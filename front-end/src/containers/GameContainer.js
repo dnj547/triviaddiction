@@ -1,5 +1,6 @@
 import React from 'react';
 import Questions from '../components/Questions'
+import Scores from '../components/Scores'
 
 const API = 'https://opentdb.com/api.php?amount=10'
 
@@ -7,7 +8,9 @@ export default class GameContainer extends React.Component {
 
   state = {
     questions: [],
-    answeredQuestions: []
+    answeredQuestions: [],
+    correctAnswers: [],
+    currentQuestion: {}
   }
 
   componentDidMount() {
@@ -19,7 +22,9 @@ export default class GameContainer extends React.Component {
     })
   }
 
-  removeQuestionAnswered = (e) => {
+  // HELPER FUNCTIONS
+  
+   removeQuestionAnswered = (e) => {
     console.log('removequestionanswered', e);
     let newQuestions = this.state.questions.filter(question=>{
       return question.question !== e.target.dataset.question
@@ -27,12 +32,23 @@ export default class GameContainer extends React.Component {
     console.log('new questions', newQuestions);
     this.setState({questions: newQuestions})
   }
+  
+  updateCorrectAnswers = (event) => {
+    this.setState({
+      correctAnswers: [...this.state.correctAnswers, event.target.id]
+    }, () => console.log("updateCorrectAnswers state: ", this.state))
+  }
+  // end HELPER FUNCTIONS
 
   render() {
     console.log('GameContainer state', this.state);
     return (
       <div>
-        <Questions questions={this.state.questions} removeQuestionAnswered={this.removeQuestionAnswered}/>
+        <Scores correctAnswers={this.state.correctAnswers} />
+        <Questions
+          updateCorrectAnswers={this.updateCorrectAnswers}
+          removeQuestionAnswered={this.removeQuestionAnswered}
+          questions={this.state.questions}/>
       </div>
     )
   }

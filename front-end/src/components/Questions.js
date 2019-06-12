@@ -8,7 +8,9 @@ export default class Questions extends React.Component {
       return <Question
                 key={question.question}
                 question={question}
-                removeQuestionAnswered={this.props.removeQuestionAnswered}/>
+                removeQuestionAnswered={this.props.removeQuestionAnswered}
+                updateCorrectAnswers={this.props.updateCorrectAnswers}/>
+
     })
   }
 
