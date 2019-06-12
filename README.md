@@ -7,18 +7,26 @@ Theme Ideas:
     * Wrong answer - coffee is spilled
     * 3 right answers in a row - fresh coffee
 
-* App: state = currentUser, userScores, allScores
-    * Nav - Logo (home), Sign Up / Log In / Log Out, Username
-    * HomePageContainer (not logged in)
-        * Rules
-    * ScoresContainer (logged in)
-        * MyScores
-        * HighScores
-    * GameContainer (logged in) state = questions, questionsAnswered (answeredCorrectly: true/false), timer
-        * Timer
-        * Questions
-            * Question
-        * Ending
+* App:
+  - **state**
+    - currentUser, userScores, allScores
+    - gameOver, gameStarted
+  * Nav - Logo (home), Sign Up / Log In / Log Out, Username
+  * HomePageContainer (not logged in)
+      * Rules
+      * Play button - triggers new game in GameContainer
+  * ScoresContainer (logged in)
+    * MyScores
+    * HighScores
+  * GameContainer (logged in)
+    - **state**
+      - questions, questionsAnswered (answeredCorrectly: true/false), timer
+    - startButton
+    * Timer
+    * Questions
+        * Score
+        * Question
+    * Ending
 
 Using:
 * Rails back end API
