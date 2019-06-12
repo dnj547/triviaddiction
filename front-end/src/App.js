@@ -13,17 +13,24 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 class App extends React.Component {
   state = {
     loggedIn: false,
-    gameStarted: true,
+    gameStarted: false,
     gameOver: false
   }
 
   // HELPER FUNCTIONS
   gameTimeOver = () => {
+    console.log('game is over');
     this.setState({ gameOver: true})
   }
 
   logIn = () => {
+    console.log('logging in');
     this.setState({ loggedIn: true })
+  }
+
+  gameStart = () => {
+    console.log('game is starting');
+    this.setState({gameStarted: true})
   }
   // end HELPER FUNCTIONS
 
@@ -32,12 +39,10 @@ class App extends React.Component {
       <div className="App">
         {this.state.loggedIn ?
           <div>
-            <Countdown
-            renderer={renderer}
-            onComplete={() => this.gameTimeOver()}
-            date={Date.now() + 5000} />
             <GameContainer gameStarted={this.state.gameStarted}
-            gameOver={this.state.gameOver}/>
+            gameOver={this.state.gameOver}
+            gameTimeOver={this.gameTimeOver}
+            gameStart={this.gameStart}/>
           </div> :
           <HomePageContainer logIn={this.logIn}/>
         }
