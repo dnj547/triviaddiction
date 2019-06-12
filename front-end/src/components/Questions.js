@@ -15,7 +15,7 @@ export default class Questions extends React.Component {
   }
 
   render() {
-    console.log('Questions component props', this.props);
+    // console.log('Questions component props', this.props);
     console.log('Questions component state', this.state);
     return (
       <div>

@@ -55,8 +55,8 @@ export default class Question extends React.Component {
 
   render() {
 
-    console.log('Question component props', this.props);
-    console.log("Question state: ", this.state)
+    // console.log('Question component props', this.props);
+    // console.log("Question state: ", this.state)
 
     const displayShuffleAnswers = this.state.answers.map(answer => {
       return (

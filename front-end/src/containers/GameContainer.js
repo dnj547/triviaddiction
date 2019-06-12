@@ -15,6 +15,13 @@ export default class GameContainer extends React.Component {
 
   componentDidMount() {
     console.log('GameContainer mounted');
+    this.fetchQuestions()
+  }
+
+  // HELPER FUNCTIONS
+
+  fetchQuestions = () => {
+    console.log('fetching questions');
     fetch(API)
     .then(r=>r.json())
     .then(questions=>{
@@ -22,21 +29,25 @@ export default class GameContainer extends React.Component {
     })
   }
 
-  // HELPER FUNCTIONS
-  
    removeQuestionAnswered = (e) => {
     console.log('removequestionanswered', e);
     let newQuestions = this.state.questions.filter(question=>{
       return question.question !== e.target.dataset.question
     })
     console.log('new questions', newQuestions);
-    this.setState({questions: newQuestions})
+
+    if (this.state.questions.length <=1) {
+      this.fetchQuestions()
+    } else {
+      this.setState({questions: newQuestions})
+    }
+
   }
-  
+
   updateCorrectAnswers = (event) => {
     this.setState({
       correctAnswers: [...this.state.correctAnswers, event.target.id]
-    }, () => console.log("updateCorrectAnswers state: ", this.state))
+    })
   }
   // end HELPER FUNCTIONS
 
