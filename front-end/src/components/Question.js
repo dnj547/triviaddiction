@@ -21,7 +21,7 @@ export default class Question extends React.Component {
       // if true turn background green
       event.target.style.background = "green"
 
-      this.props.updateAnsweredQuestions(event)
+      this.props.updateCorrectAnswers(event)
 
     } else {
       // else background red

@@ -9,6 +9,7 @@ export default class GameContainer extends React.Component {
   state = {
     questions: [],
     answeredQuestions: [],
+    correctAnswers: [],
     currentQuestion: {}
   }
 
@@ -22,10 +23,10 @@ export default class GameContainer extends React.Component {
   }
 
   // HELPER FUNCTIONS
-  updateAnsweredQuestions = (event) => {
+  updateCorrectAnswers = (event) => {
     this.setState({
-      answeredQuestions: [...this.state.answeredQuestions, event.target.id]
-    }, () => console.log("updateAnsweredQuestions state: ", this.state))
+      correctAnswers: [...this.state.correctAnswers, event.target.id]
+    }, () => console.log("updateCorrectAnswers state: ", this.state))
   }
   // end HELPER FUNCTIONS
 
@@ -33,9 +34,9 @@ export default class GameContainer extends React.Component {
     console.log('GameContainer state', this.state);
     return (
       <div>
-        <Scores answeredQuestions={this.state.answeredQuestions} />
+        <Scores correctAnswers={this.state.correctAnswers} />
         <Questions
-          updateAnsweredQuestions={this.updateAnsweredQuestions}
+          updateCorrectAnswers={this.updateCorrectAnswers}
           questions={this.state.questions}/>
       </div>
     )

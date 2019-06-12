@@ -6,7 +6,7 @@ export default class Questions extends React.Component {
     return this.props.questions.slice(0,1).map(question => {
       return <Question
         key={question.question}
-        updateAnsweredQuestions={this.props.updateAnsweredQuestions}
+        updateCorrectAnswers={this.props.updateCorrectAnswers}
         question={question} />
     })
   }
