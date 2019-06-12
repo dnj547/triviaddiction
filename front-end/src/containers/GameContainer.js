@@ -20,19 +20,20 @@ export default class GameContainer extends React.Component {
     return (
       <div>
         {this.props.gameStarted ?
-          <Countdown
-          renderer={renderer}
-          onComplete={() => this.props.gameTimeOver()}
-          date={Date.now() + 5000} /> :
-          <button onClick={() => this.props.gameStart()}>Start Game</button>
-        }
-
           <div>
+            <Countdown
+              renderer={renderer}
+              onComplete={() => this.props.gameTimeOver()}
+              date={Date.now() + 5000} />
             <Questions gameStarted={this.props.gameStarted}
               gameOver={this.props.gameOver}
               gameTimeOver={this.props.gameTimeOver}
               gameStart={this.props.gameStart}/>
           </div>
+        :
+          <button onClick={() => this.props.gameStart()}>Start Game</button>
+        }
+
       </div>
     )
   }
