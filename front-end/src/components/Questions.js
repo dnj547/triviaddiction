@@ -4,7 +4,10 @@ import Question from './Question'
 export default class Questions extends React.Component {
   allQuestions = () => {
     return this.props.questions.slice(0,1).map(question => {
-      return <Question key={question.question} question={question} />
+      return <Question
+        key={question.question}
+        updateAnsweredQuestions={this.props.updateAnsweredQuestions}
+        question={question} />
     })
   }
   render() {

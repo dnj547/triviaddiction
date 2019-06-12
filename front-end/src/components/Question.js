@@ -20,6 +20,9 @@ export default class Question extends React.Component {
     if (event.target.id === this.state.correct_answer) {
       // if true turn background green
       event.target.style.background = "green"
+
+      this.props.updateAnsweredQuestions(event)
+
     } else {
       // else background red
       event.target.style.background = "red"
@@ -57,7 +60,6 @@ export default class Question extends React.Component {
     const displayShuffleAnswers = this.state.answers.map(answer => {
       return (
         <div
-
           id={answer}
           key={answer}>
           {answer}

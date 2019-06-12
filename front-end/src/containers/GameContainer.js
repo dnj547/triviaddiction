@@ -1,5 +1,6 @@
 import React from 'react';
 import Questions from '../components/Questions'
+import Scores from '../components/Scores'
 
 const API = 'https://opentdb.com/api.php?amount=10'
 
@@ -20,11 +21,22 @@ export default class GameContainer extends React.Component {
     })
   }
 
+  // HELPER FUNCTIONS
+  updateAnsweredQuestions = (event) => {
+    this.setState({
+      answeredQuestions: [...this.state.answeredQuestions, event.target.id]
+    }, () => console.log("updateAnsweredQuestions state: ", this.state))
+  }
+  // end HELPER FUNCTIONS
+
   render() {
     console.log('GameContainer state', this.state);
     return (
       <div>
-        <Questions questions={this.state.questions}/>
+        <Scores answeredQuestions={this.state.answeredQuestions} />
+        <Questions
+          updateAnsweredQuestions={this.updateAnsweredQuestions}
+          questions={this.state.questions}/>
       </div>
     )
   }
