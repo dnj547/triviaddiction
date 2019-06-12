@@ -7,12 +7,11 @@ export default class GameContainer extends React.Component {
 
   state = {
     questions: [],
-    answeredQuestions: [],
-    currentQuestion: {}
+    answeredQuestions: []
   }
 
   componentDidMount() {
-    console.log('component did mount');
+    console.log('GameContainer mounted');
     fetch(API)
     .then(r=>r.json())
     .then(questions=>{
@@ -20,11 +19,20 @@ export default class GameContainer extends React.Component {
     })
   }
 
+  removeQuestionAnswered = (e) => {
+    console.log('removequestionanswered', e);
+    let newQuestions = this.state.questions.filter(question=>{
+      return question.question !== e.target.dataset.question
+    })
+    console.log('new questions', newQuestions);
+    this.setState({questions: newQuestions})
+  }
+
   render() {
     console.log('GameContainer state', this.state);
     return (
       <div>
-        <Questions questions={this.state.questions}/>
+        <Questions questions={this.state.questions} removeQuestionAnswered={this.removeQuestionAnswered}/>
       </div>
     )
   }
