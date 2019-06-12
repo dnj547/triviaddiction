@@ -56,3 +56,8 @@ Stretch Goals:
 
 CRUD actions:
 * User - create user, update username, delete account
+
+
+
+Install:
+* npm install react-countdown-now --save

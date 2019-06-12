@@ -1,5 +1,7 @@
 import React from 'react';
+import Ending from './components/Ending'
 import GameContainer from './containers/GameContainer'
+import HomePageContainer from './containers/HomePageContainer'
 
 // Countdown
 import Countdown from 'react-countdown-now'
@@ -10,6 +12,7 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 
 class App extends React.Component {
   state = {
+    loggedIn: false,
     gameStarted: true,
     gameOver: false
   }
@@ -18,20 +21,26 @@ class App extends React.Component {
   gameTimeOver = () => {
     this.setState({ gameOver: true})
   }
+
+  logIn = () => {
+    this.setState({ loggedIn: true })
+  }
   // end HELPER FUNCTIONS
 
   render() {
     return (
       <div className="App">
-      <Countdown
-        renderer={renderer}
-        onComplete={() => this.gameTimeOver()}
-        date={Date.now() + 5000} />
-
-      {
-        this.state.gameOver ? "Game Over" :
-      <GameContainer />
-      }
+        {this.state.loggedIn ?
+          <div>
+            <Countdown
+            renderer={renderer}
+            onComplete={() => this.gameTimeOver()}
+            date={Date.now() + 5000} />
+            <GameContainer gameStarted={this.state.gameStarted}
+            gameOver={this.state.gameOver}/>
+          </div> :
+          <HomePageContainer logIn={this.logIn}/>
+        }
       </div>
     );
   }

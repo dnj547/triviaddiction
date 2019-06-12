@@ -17,10 +17,7 @@ export default class GameContainer extends React.Component {
   state = {
     questions: [],
     answeredQuestions: [],
-    correctAnswers: [],
-    currentQuestion: {},
-    gameStarted: false,
-    gameOver: false
+    correctAnswers: []
   }
 
   componentDidMount() {
@@ -63,14 +60,19 @@ export default class GameContainer extends React.Component {
     console.log('GameContainer state', this.state);
     return (
       <div>
-        <button onClick={() => this.setState({gameStarted: true})}>Start Game</button>
+        {this.props.gameOver ?
+          <Ending score={this.state.correctAnswers.length}/> :
+          <div>
+            <button onClick={() => this.setState({gameStarted: true})}>Start Game</button>
 
-        <Scores correctAnswers={this.state.correctAnswers} />
+            <Scores correctAnswers={this.state.correctAnswers.length} />
 
-        <Questions
-          updateCorrectAnswers={this.updateCorrectAnswers}
-          removeQuestionAnswered={this.removeQuestionAnswered}
-          questions={this.state.questions}/>
+            <Questions
+            updateCorrectAnswers={this.updateCorrectAnswers}
+            removeQuestionAnswered={this.removeQuestionAnswered}
+            questions={this.state.questions}/>
+          </div>
+        }
       </div>
     )
   }

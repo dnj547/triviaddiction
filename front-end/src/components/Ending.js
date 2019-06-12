@@ -3,7 +3,9 @@ import React from "react"
 export default class Ending extends React.Component {
   render() {
     return (
-      <div>Hello from Ending</div>
+      <div>
+        Score: {this.props.score}
+      </div>
     )
   }
 }
