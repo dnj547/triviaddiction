@@ -1,7 +1,14 @@
 import React from 'react';
 import Questions from '../components/Questions'
 import Scores from '../components/Scores'
-import Timer from '../components/Timer'
+import Ending from '../components/Ending'
+
+// Countdown
+import Countdown from 'react-countdown-now'
+const renderer = ({ hours, minutes, seconds, completed }) => {
+  return <span>{seconds}</span>;
+};
+// end Countdown
 
 const API = 'https://opentdb.com/api.php?amount=10'
 
@@ -11,7 +18,9 @@ export default class GameContainer extends React.Component {
     questions: [],
     answeredQuestions: [],
     correctAnswers: [],
-    currentQuestion: {}
+    currentQuestion: {},
+    gameStarted: false,
+    gameOver: false
   }
 
   componentDidMount() {
@@ -20,7 +29,6 @@ export default class GameContainer extends React.Component {
   }
 
   // HELPER FUNCTIONS
-
   fetchQuestions = () => {
     console.log('fetching questions');
     fetch(API)
@@ -55,8 +63,10 @@ export default class GameContainer extends React.Component {
     console.log('GameContainer state', this.state);
     return (
       <div>
-        <Timer />
+        <button onClick={() => this.setState({gameStarted: true})}>Start Game</button>
+
         <Scores correctAnswers={this.state.correctAnswers} />
+
         <Questions
           updateCorrectAnswers={this.updateCorrectAnswers}
           removeQuestionAnswered={this.removeQuestionAnswered}
