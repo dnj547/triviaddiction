@@ -31,6 +31,7 @@ export default class Question extends React.Component {
     this.setState({
       answered: true
     })
+    // this.props.removeQuestionAnswered(event)
   }
   componentDidMount() {
     // new array to house all answers
@@ -61,7 +62,8 @@ export default class Question extends React.Component {
       return (
         <div
           id={answer}
-          key={answer}>
+          key={answer}
+          data-question={this.props.question.question}>
           {answer}
         </div>
       )
@@ -73,6 +75,7 @@ export default class Question extends React.Component {
         <div onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
           {displayShuffleAnswers}
         </div>
+        {this.state.answered ? <button onClick={(e)=>this.props.removeQuestionAnswered(e)} data-question={this.props.question.question}>Next Question</button> : null}
       </div>
     )
   }
