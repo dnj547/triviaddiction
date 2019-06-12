@@ -5,28 +5,59 @@ const entities = new Entities();
 
 
 export default class Question extends React.Component {
+  state = {
+    answered: false,
+    answers: [],
+    correct_answer: ''
+  }
 
-  render() {
+  selectAnswer = (event) => {
+    // debugger
+    // correct answer is here: this.props.question.correct_answer
+    console.log(event.target.id)
+
+    // check if current answer is correct
+    if (event.target.id === this.state.correct_answer) {
+      // if true turn background green
+      event.target.style.background = "green"
+    } else {
+      // else background red
+      event.target.style.background = "red"
+    }
+    // only one click
+    this.setState({
+      answered: true
+    })
+  }
+  componentDidMount() {
     // new array to house all answers
     const answers = [...this.props.question.incorrect_answers, this.props.question.correct_answer]
 
     // decode answers in case they're regexed
     const decodedAnswers = answers.map(answer => entities.decode(answer))
 
-    // decode correct answer
-    const correct_answer = entities.decode(this.props.question.correct_answer)
-
     const shuffleAnswers = [...decodedAnswers].sort(() => Math.random() - 0.5)
     // shuffle answers so correct answer is not always the last one
 
-    console.log('Question component props', this.props);
-    console.log("shuffleAnswers", shuffleAnswers)
-    console.log("answers", answers)
+    // decode correct answer
+    const correct_answer = entities.decode(this.props.question.correct_answer)
 
-    const displayShuffleAnswers = shuffleAnswers.map(answer => {
+    this.setState({
+      answers: shuffleAnswers,
+      correct_answer: correct_answer
+    })
+
+  }
+
+  render() {
+
+    console.log('Question component props', this.props);
+    console.log("Question state: ", this.state)
+
+    const displayShuffleAnswers = this.state.answers.map(answer => {
       return (
         <div
-          onClick={event => selectAnswer(event)}
+
           id={answer}
           key={answer}>
           {answer}
@@ -34,26 +65,12 @@ export default class Question extends React.Component {
       )
     })
 
-    const selectAnswer = (event) => {
-      // debugger
-      // correct answer is here: this.props.question.correct_answer
-      console.log(event.currentTarget.id)
-
-      if (event.currentTarget.id === correct_answer) {
-        event.currentTarget.style.background = "green"
-      } else {
-        event.currentTarget.style.background = "red"
-      }
-      // check if current answer is correct
-      // if true turn background green
-      // else background red
-      // only one click
-    }
-
     return (
       <div>
         <h2>{entities.decode(this.props.question.question)}</h2>
-        {displayShuffleAnswers}
+        <div onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
+          {displayShuffleAnswers}
+        </div>
       </div>
     )
   }
