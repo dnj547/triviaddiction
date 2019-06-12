@@ -1,4 +1,8 @@
 import React from 'react';
+const Entities = require('html-entities').AllHtmlEntities;
+
+const entities = new Entities();
+
 
 export default class Question extends React.Component {
 
@@ -6,7 +10,7 @@ export default class Question extends React.Component {
     console.log('Question component props', this.props);
     return (
       <div>
-        Question
+        <h2>{entities.decode(this.props.question.question)}</h2>
       </div>
     )
   }
