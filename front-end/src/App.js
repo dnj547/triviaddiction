@@ -2,6 +2,8 @@ import React from 'react';
 import GameContainer from './containers/GameContainer'
 import HomePageContainer from './containers/HomePageContainer'
 
+const API = 'http://localhost:3000/'
+
 class App extends React.Component {
   state = {
     loggedIn: false,
@@ -16,9 +18,25 @@ class App extends React.Component {
     this.setState({ gameOver: true})
   }
 
-  logIn = () => {
+  logIn = (event) => {
+    event.preventDefault()
     console.log('logging in');
-    this.setState({ loggedIn: true })
+    fetch(API + 'login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        username: 'edgar',
+        password: 'hello'
+      })
+    })
+      .then(r => r.json())
+      .then(data => {
+        localStorage.setItem('token', data.token)
+        this.setState({ loggedIn: true })
+      })
   }
 
   playGame = () => {
