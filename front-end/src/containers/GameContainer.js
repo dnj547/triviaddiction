@@ -28,7 +28,8 @@ export default class GameContainer extends React.Component {
             <Questions gameStarted={this.props.gameStarted}
               gameOver={this.props.gameOver}
               gameTimeOver={this.props.gameTimeOver}
-              gameStart={this.props.gameStart}/>
+              gameStart={this.props.gameStart}
+              playAgainApp={this.props.playAgainApp}/>
           </div>
         :
           <button onClick={() => this.props.gameStart()}>Start Game</button>

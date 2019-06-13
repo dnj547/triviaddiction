@@ -24,7 +24,7 @@ export default class Questions extends React.Component {
     fetch(API)
     .then(r=>r.json())
     .then(questions=>{
-      this.setState({questions: questions.results})
+      this.setState({questions: questions.results, answeredQuestion: [], correctAnswers: []})
     })
   } // end fetchQuestions
 
@@ -59,14 +59,21 @@ export default class Questions extends React.Component {
     })
   } // end updateCorrectAnswers
 
-  render() {
-    // console.log('Questions component props', this.props);
-    // console.log('Questions component state', this.state);
+  playAgainQuestions = () => {
+    console.log('playAgainQuestions');
+    this.componentWillUnmount();
+  }
 
+  componentWillUnmount() {
+    console.log('Questions component will unmount');
+    this.props.playAgainApp();
+  }
+
+  render() {
     return (
       <div>
         {this.props.gameOver ?
-          <Ending score={this.state.correctAnswers.length}/> :
+          <Ending score={this.state.correctAnswers.length} playAgain={this.playAgainQuestions} /> :
           <div>
             <Scores correctAnswers={this.state.correctAnswers.length} />
             {this.allQuestions()}
