@@ -16,17 +16,17 @@ class App extends React.Component {
       username: '',
       scores: []
     },
-    userLogin: {
+    userForm: {
       username: '',
       password: ''
     }
   }
 
   // HELPER FUNCTIONS
-  handleLogin = (event) => {
+  handleForm = (event) => {
     this.setState({
-      userLogin: {
-        ...this.state.userLogin,
+      userForm: {
+        ...this.state.userForm,
         [event.target.name]: event.target.value
       }
     })
@@ -47,17 +47,19 @@ class App extends React.Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        username: this.state.userLogin.username,
-        password: this.state.userLogin.password
+        username: this.state.userForm.username,
+        password: this.state.userForm.password
       })
     })
       .then(r => r.json())
       .then(data => {
+        // checks if token is returned
         if (!!data.token) {
           localStorage.setItem('token', data.token)
         }
       })
       .then(() => {
+        // secondary fetch to validate token
         fetch(API + 'profile', {
           headers: {
             "Authorization": localStorage.getItem('token')
@@ -65,14 +67,14 @@ class App extends React.Component {
         })
           .then(r => r.json())
           .then(data => {
-            if (data.username === this.state.userLogin.username) {
+            if (data.username === this.state.userForm.username) {
               this.setState({
                 loggedIn: true,
               })
             }
           })
-      })
-  }
+      }) // end secondary fetch
+  } // end logIn
 
   playGame = () => {
     console.log('playing game');
@@ -107,9 +109,8 @@ class App extends React.Component {
       })
         .then(r => r.json())
         .then(data => {
-          // debugger
+          // check if username is returned
           if (!!data.username) {
-            console.log("logged in")
             this.setState({
               loggedIn: true,
               currentUser: {
@@ -120,27 +121,28 @@ class App extends React.Component {
             })
           }
         })
-    }
-  }
+    } // end if
+  } // end componentDidMount
 
   render() {
     return (
       <div className="App">
-        <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut}/>
-        {this.state.playClicked ?
-          <div>
-            <GameContainer
-              gameStarted={this.state.gameStarted}
-              gameOver={this.state.gameOver}
-              gameTimeOver={this.gameTimeOver}
-              gameStart={this.gameStart}
-              playAgainApp={this.playAgainApp}/>
-          </div> :
-          <HomePageContainer
+        <MyNavBar
+          loggedIn={this.state.loggedIn}
+          signOut={this.signOut} />
+        {this.state.playClicked && this.state.loggedIn ?
+          <GameContainer
             currentUser={this.state.currentUser}
-            handleLogin={this.handleLogin}
+            gameStarted={this.state.gameStarted}
+            gameOver={this.state.gameOver}
+            gameTimeOver={this.gameTimeOver}
+            gameStart={this.gameStart}
+            playAgainApp={this.playAgainApp}/>
+        :
+          <HomePageContainer
+            handleForm={this.handleForm}
             logIn={this.logIn}
-            userLogin={this.state.userLogin}
+            userForm={this.state.userForm}
             playGame={this.playGame}
             loggedIn={this.state.loggedIn}/>
         }
