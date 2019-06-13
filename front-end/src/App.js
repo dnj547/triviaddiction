@@ -17,17 +17,25 @@ class App extends React.Component {
       username: '',
       scores: []
     },
-    userLogin: {
+    userForm: {
       username: '',
       password: ''
-    }
+    },
+    signUp: true
   }
 
   // HELPER FUNCTIONS
-  handleLogin = (event) => {
+  signUpLogIn = (event) => {
+    event.preventDefault()
     this.setState({
-      userLogin: {
-        ...this.state.userLogin,
+      signUp: !this.state.signUp
+    })
+  }
+
+  handleForm = (event) => {
+    this.setState({
+      userForm: {
+        ...this.state.userForm,
         [event.target.name]: event.target.value
       }
     })
@@ -41,24 +49,26 @@ class App extends React.Component {
   logIn = (event) => {
     event.preventDefault()
     console.log('logging in');
-    fetch(API + 'login', {
+    fetch(API + event.currentTarget.dataset.type, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
       body: JSON.stringify({
-        username: this.state.userLogin.username,
-        password: this.state.userLogin.password
+        username: this.state.userForm.username,
+        password: this.state.userForm.password
       })
     })
       .then(r => r.json())
       .then(data => {
+        // checks if token is returned
         if (!!data.token) {
           localStorage.setItem('token', data.token)
         }
       })
       .then(() => {
+        // secondary fetch to validate token
         fetch(API + 'profile', {
           headers: {
             "Authorization": localStorage.getItem('token')
@@ -66,14 +76,15 @@ class App extends React.Component {
         })
           .then(r => r.json())
           .then(data => {
-            if (data.username === this.state.userLogin.username) {
+            if (data.username === this.state.userForm.username) {
               this.setState({
                 loggedIn: true,
+                currentUser: {}
               })
             }
           })
-      })
-  }
+      }) // end secondary fetch
+  } // end logIn
 
   playGame = () => {
     console.log('playing game');
@@ -109,9 +120,8 @@ class App extends React.Component {
       })
         .then(r => r.json())
         .then(data => {
-          // debugger
+          // check if username is returned
           if (!!data.username) {
-            console.log("logged in")
             this.setState({
               loggedIn: true,
               currentUser: {
@@ -122,12 +132,14 @@ class App extends React.Component {
             })
           }
         })
-    }
-  } // end of componentDidMount
+
+    } // end if
+  } // end componentDidMount
 
   render() {
     // console.log('App state', this.state);
     return (
+
 
       <Router>
         <div className="app">
@@ -136,6 +148,31 @@ class App extends React.Component {
 
         </div>
       </Router>
+
+
+      <div className="App">
+        <MyNavBar
+          loggedIn={this.state.loggedIn}
+          signOut={this.signOut} />
+        {this.state.playClicked && this.state.loggedIn ?
+          <GameContainer
+            currentUser={this.state.currentUser}
+            gameStarted={this.state.gameStarted}
+            gameOver={this.state.gameOver}
+            gameTimeOver={this.gameTimeOver}
+            gameStart={this.gameStart}
+            playAgainApp={this.playAgainApp}/>
+        :
+          <HomePageContainer
+            signUpLogIn={this.signUpLogIn}
+            signUp={this.state.signUp}
+            handleForm={this.handleForm}
+            logIn={this.logIn}
+            userForm={this.state.userForm}
+            playGame={this.playGame}
+            loggedIn={this.state.loggedIn}/>
+        }
+      </div>
 
     );
   }

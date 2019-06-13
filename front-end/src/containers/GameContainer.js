@@ -34,9 +34,11 @@ export default class GameContainer extends React.Component {
               playAgainApp={this.props.playAgainApp}/>
           </div>
         :
-          <button onClick={() => this.props.gameStart()}>Start Game</button>
+          <div>
+            <p>Hi {this.props.currentUser.username}</p>
+            <button onClick={() => this.props.gameStart()}>Start Game</button>
+          </div>
         }
-
       </div>
     )
   }
