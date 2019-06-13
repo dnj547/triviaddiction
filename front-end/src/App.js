@@ -1,14 +1,6 @@
 import React from 'react';
-import Ending from './components/Ending'
 import GameContainer from './containers/GameContainer'
 import HomePageContainer from './containers/HomePageContainer'
-
-// Countdown
-import Countdown from 'react-countdown-now'
-const renderer = ({ hours, minutes, seconds, completed }) => {
-  return <span>{seconds}</span>;
-};
-// end Countdown
 
 class App extends React.Component {
   state = {
@@ -32,6 +24,12 @@ class App extends React.Component {
     console.log('game is starting');
     this.setState({gameStarted: true})
   }
+
+  playAgainApp = () => {
+    console.log('playAgainApp');
+    this.setState({gameStarted: false, gameOver: false})
+  }
+
   // end HELPER FUNCTIONS
 
   render() {
@@ -42,7 +40,8 @@ class App extends React.Component {
             <GameContainer gameStarted={this.state.gameStarted}
             gameOver={this.state.gameOver}
             gameTimeOver={this.gameTimeOver}
-            gameStart={this.gameStart}/>
+            gameStart={this.gameStart}
+            playAgainApp={this.playAgainApp}/>
           </div> :
           <HomePageContainer logIn={this.logIn}/>
         }
