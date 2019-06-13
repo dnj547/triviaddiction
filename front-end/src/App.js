@@ -153,68 +153,38 @@ class App extends React.Component {
     } // end if
   } // end componentDidMount
 
+  homePageOrGameCont = () => {
+    if (!this.state.loggedIn) {
+      return <HomePageContainer
+        signUpLogIn={this.signUpLogIn}
+        signUp={this.state.signUp}
+        handleForm={this.handleForm}
+        logIn={this.logIn}
+        userForm={this.state.userForm}
+        playGame={this.playGame}
+        loggedIn={this.state.loggedIn}/>
+    } else {
+      return <GameContainer
+        currentUser={this.state.currentUser}
+        gameStarted={this.state.gameStarted}
+        gameOver={this.state.gameOver}
+        gameTimeOver={this.gameTimeOver}
+        gameStart={this.gameStart}
+        playAgainApp={this.playAgainApp}/>
+    }
+  }
+
   render() {
     // console.log('App state', this.state);
     return (
-
-
-      // <Router>
-      //   <div className="app">
-      //     <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
-      //     <Route exact path="/" render={(routerProps)=>HomePageContainer} />
-      //
-      //   </div>
-      // </Router>
-
-
-      <div className="App">
-        <MyNavBar
-          loggedIn={this.state.loggedIn}
-          signOut={this.signOut} />
-        {this.state.playClicked && this.state.loggedIn ?
-          <GameContainer
-            currentUser={this.state.currentUser}
-            gameStarted={this.state.gameStarted}
-            gameOver={this.state.gameOver}
-            gameTimeOver={this.gameTimeOver}
-            gameStart={this.gameStart}
-            playAgainApp={this.playAgainApp}/>
-        :
-          <HomePageContainer
-            signUpLogIn={this.signUpLogIn}
-            signUp={this.state.signUp}
-            handleForm={this.handleForm}
-            logIn={this.logIn}
-            userForm={this.state.userForm}
-            playGame={this.playGame}
-            loggedIn={this.state.loggedIn}/>
-        }
-      </div>
-
+      <Router>
+        <div className="app">
+          <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
+          <Route exact path='/' render={() => this.homePageOrGameCont()} />
+        </div>
+      </Router>
     );
   }
 }
 
 export default App;
-
-
-// <div className="App">
-// <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
-// {this.state.playClicked ?
-//   <div>
-//   <GameContainer
-//   gameStarted={this.state.gameStarted}
-//   gameOver={this.state.gameOver}
-//   gameTimeOver={this.gameTimeOver}
-//   gameStart={this.gameStart}
-//   playAgainApp={this.playAgainApp}/>
-//   </div> :
-//   <HomePageContainer
-//   currentUser={this.state.currentUser}
-//   handleLogin={this.handleLogin}
-//   logIn={this.logIn}
-//   userLogin={this.state.userLogin}
-//   playGame={this.playGame}
-//   loggedIn={this.state.loggedIn}/>
-// }
-// </div>
