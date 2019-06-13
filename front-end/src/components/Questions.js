@@ -44,7 +44,7 @@ export default class Questions extends React.Component {
     let newQuestions = this.state.questions.filter(question=>{
       return question.question !== e.target.dataset.question
     })
-    console.log('new questions', newQuestions);
+    // console.log('new questions', newQuestions);
 
     if (this.state.questions.length <=1) {
       this.fetchQuestions()
@@ -60,7 +60,7 @@ export default class Questions extends React.Component {
   } // end updateCorrectAnswers
 
   playAgainQuestions = () => {
-    console.log('playAgainQuestions');
+    // console.log('playAgainQuestions');
     this.componentWillUnmount();
   }
 

@@ -14,7 +14,7 @@ export default class Question extends React.Component {
   selectAnswer = (event) => {
     // debugger
     // correct answer is here: this.props.question.correct_answer
-    console.log(event.target.id)
+    // console.log(event.target.id)
 
     // check if current answer is correct
     if (event.target.id === this.state.correct_answer) {

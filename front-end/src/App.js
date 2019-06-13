@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import GameContainer from './containers/GameContainer';
 import HomePageContainer from './containers/HomePageContainer';
 import MyNavBar from './components/MyNavBar'
@@ -85,7 +86,7 @@ class App extends React.Component {
   }
 
   playAgainApp = () => {
-    console.log('playAgainApp');
+    console.log('playing game again');
     this.setState({gameStarted: false, gameOver: false})
   }
 
@@ -99,6 +100,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // check if current user is already logged in
+    console.log('App componentDidMount');
     if (!!localStorage.token) {
       fetch(API + 'profile', {
         headers: {
@@ -121,32 +123,44 @@ class App extends React.Component {
           }
         })
     }
-  }
+  } // end of componentDidMount
 
   render() {
+    // console.log('App state', this.state);
     return (
-      <div className="App">
-        <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut}/>
-        {this.state.playClicked ?
-          <div>
-            <GameContainer
-              gameStarted={this.state.gameStarted}
-              gameOver={this.state.gameOver}
-              gameTimeOver={this.gameTimeOver}
-              gameStart={this.gameStart}
-              playAgainApp={this.playAgainApp}/>
-          </div> :
-          <HomePageContainer
-            currentUser={this.state.currentUser}
-            handleLogin={this.handleLogin}
-            logIn={this.logIn}
-            userLogin={this.state.userLogin}
-            playGame={this.playGame}
-            loggedIn={this.state.loggedIn}/>
-        }
-      </div>
+
+      <Router>
+        <div className="app">
+          <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
+          <Route exact path="/" render={(routerProps)=>HomePageContainer} />
+
+        </div>
+      </Router>
+
     );
   }
 }
 
 export default App;
+
+
+// <div className="App">
+// <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
+// {this.state.playClicked ?
+//   <div>
+//   <GameContainer
+//   gameStarted={this.state.gameStarted}
+//   gameOver={this.state.gameOver}
+//   gameTimeOver={this.gameTimeOver}
+//   gameStart={this.gameStart}
+//   playAgainApp={this.playAgainApp}/>
+//   </div> :
+//   <HomePageContainer
+//   currentUser={this.state.currentUser}
+//   handleLogin={this.handleLogin}
+//   logIn={this.logIn}
+//   userLogin={this.state.userLogin}
+//   playGame={this.playGame}
+//   loggedIn={this.state.loggedIn}/>
+// }
+// </div>
