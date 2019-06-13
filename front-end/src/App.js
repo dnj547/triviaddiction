@@ -19,10 +19,18 @@ class App extends React.Component {
     userForm: {
       username: '',
       password: ''
-    }
+    },
+    signUp: true
   }
 
   // HELPER FUNCTIONS
+  signUpLogIn = (event) => {
+    event.preventDefault()
+    this.setState({
+      signUp: !this.state.signUp
+    })
+  }
+
   handleForm = (event) => {
     this.setState({
       userForm: {
@@ -40,7 +48,7 @@ class App extends React.Component {
   logIn = (event) => {
     event.preventDefault()
     console.log('logging in');
-    fetch(API + 'login', {
+    fetch(API + event.currentTarget.dataset.type, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,6 +78,7 @@ class App extends React.Component {
             if (data.username === this.state.userForm.username) {
               this.setState({
                 loggedIn: true,
+                currentUser: {}
               })
             }
           })
@@ -140,6 +149,8 @@ class App extends React.Component {
             playAgainApp={this.playAgainApp}/>
         :
           <HomePageContainer
+            signUpLogIn={this.signUpLogIn}
+            signUp={this.state.signUp}
             handleForm={this.handleForm}
             logIn={this.logIn}
             userForm={this.state.userForm}

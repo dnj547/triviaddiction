@@ -14,6 +14,8 @@ export default class HomePageContainer extends React.Component {
             <button onClick={this.props.playGame}>Play</button>
           </div> :
           <Form
+            signUpLogIn={this.props.signUpLogIn}
+            signUp={this.props.signUp}
             logIn={this.props.logIn}
             handleForm={this.props.handleForm}
             userForm={this.props.userForm} />
