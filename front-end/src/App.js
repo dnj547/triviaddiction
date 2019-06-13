@@ -6,7 +6,8 @@ class App extends React.Component {
   state = {
     loggedIn: false,
     gameStarted: false,
-    gameOver: false
+    gameOver: false,
+    playClicked: false
   }
 
   // HELPER FUNCTIONS
@@ -20,6 +21,11 @@ class App extends React.Component {
     this.setState({ loggedIn: true })
   }
 
+  playGame = () => {
+    console.log('playing game');
+    this.setState({playClicked: true})
+  }
+
   gameStart = () => {
     console.log('game is starting');
     this.setState({gameStarted: true})
@@ -29,13 +35,31 @@ class App extends React.Component {
     console.log('playAgainApp');
     this.setState({gameStarted: false, gameOver: false})
   }
+  //
+  // navBar = () => {
+  //   return (
+  //     <Navbar bg="light" variant="light">
+  //       <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+  //       <Nav className="mr-auto">
+  //         <Nav.Link href="#home">Home</Nav.Link>
+  //         <Nav.Link href="#features">Features</Nav.Link>
+  //         <Nav.Link href="#pricing">Pricing</Nav.Link>
+  //       </Nav>
+  //       <Form inline>
+  //         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+  //         <Button variant="outline-primary">Search</Button>
+  //       </Form>
+  //     </Navbar>
+  //   )
+  // }
 
   // end HELPER FUNCTIONS
 
   render() {
     return (
       <div className="App">
-        {this.state.loggedIn ?
+        NavBar
+        {this.state.playClicked ?
           <div>
             <GameContainer gameStarted={this.state.gameStarted}
             gameOver={this.state.gameOver}
@@ -43,7 +67,7 @@ class App extends React.Component {
             gameStart={this.gameStart}
             playAgainApp={this.playAgainApp}/>
           </div> :
-          <HomePageContainer logIn={this.logIn}/>
+          <HomePageContainer logIn={this.logIn} playGame={this.playGame} loggedIn={this.state.loggedIn}/>
         }
       </div>
     );

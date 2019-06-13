@@ -8,7 +8,22 @@ export default class HomePageContainer extends React.Component {
         <h1>Triviaddiction</h1>
         <h2>Rules:</h2>
         <p>Answer as many questions as you can before the timer runs out!</p>
-        <button onClick={this.props.logIn}>Play</button>
+        {this.props.loggedIn ?
+          <button onClick={this.props.playGame}>Play</button> :
+          <form onSubmit={this.props.logIn}>
+            <label>
+              Username:
+              <input type="text" name="username" />
+            </label>
+            <br/>
+            <label>
+              Password:
+              <input type="password" name="password" />
+            </label>
+            <br/>
+            <input type="submit" value="Log In" />
+          </form>
+        }
       </div>
     )
   }
