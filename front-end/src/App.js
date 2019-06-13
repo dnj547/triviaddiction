@@ -3,23 +3,74 @@ import GameContainer from './containers/GameContainer';
 import HomePageContainer from './containers/HomePageContainer';
 import MyNavBar from './components/MyNavBar'
 
+const API = 'http://localhost:3000/'
+
 class App extends React.Component {
   state = {
     loggedIn: false,
     gameStarted: false,
     gameOver: false,
-    playClicked: false
+    playClicked: false,
+    currentUser: {
+      username: '',
+      scores: []
+    },
+    userLogin: {
+      username: '',
+      password: ''
+    }
   }
 
   // HELPER FUNCTIONS
+  handleLogin = (event) => {
+    this.setState({
+      userLogin: {
+        ...this.state.userLogin,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
   gameTimeOver = () => {
     console.log('game is over');
     this.setState({ gameOver: true})
   }
 
-  logIn = () => {
+  logIn = (event) => {
+    event.preventDefault()
     console.log('logging in');
-    this.setState({ loggedIn: true })
+    fetch(API + 'login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.userLogin.username,
+        password: this.state.userLogin.password
+      })
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (!!data.token) {
+          localStorage.setItem('token', data.token)
+        }
+      })
+      .then(() => {
+        fetch(API + 'profile', {
+          headers: {
+            "Authorization": localStorage.getItem('token')
+          }
+        })
+          .then(r => r.json())
+          .then(data => {
+            if (data.username === this.state.userLogin.username) {
+              this.setState({
+                loggedIn: true,
+              })
+            }
+          })
+      })
   }
 
   playGame = () => {
@@ -39,19 +90,51 @@ class App extends React.Component {
 
   // end HELPER FUNCTIONS
 
+  componentDidMount() {
+    // check if current user is already logged in
+    if (!!localStorage.token) {
+      fetch(API + 'profile', {
+        headers: {
+          "Authorization": localStorage.getItem('token')
+        }
+      })
+        .then(r => r.json())
+        .then(data => {
+          // debugger
+          if (!!data.username) {
+            console.log("logged in")
+            this.setState({
+              loggedIn: true,
+              currentUser: {
+                ...this.state.currentUser,
+                username: data.username
+              }
+            })
+          }
+        })
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <MyNavBar loggedIn={this.state.loggedIn} />
         {this.state.playClicked ?
           <div>
-            <GameContainer gameStarted={this.state.gameStarted}
-            gameOver={this.state.gameOver}
-            gameTimeOver={this.gameTimeOver}
-            gameStart={this.gameStart}
-            playAgainApp={this.playAgainApp}/>
+            <GameContainer
+              gameStarted={this.state.gameStarted}
+              gameOver={this.state.gameOver}
+              gameTimeOver={this.gameTimeOver}
+              gameStart={this.gameStart}
+              playAgainApp={this.playAgainApp}/>
           </div> :
-          <HomePageContainer logIn={this.logIn} playGame={this.playGame} loggedIn={this.state.loggedIn}/>
+          <HomePageContainer
+            currentUser={this.state.currentUser}
+            handleLogin={this.handleLogin}
+            logIn={this.logIn}
+            userLogin={this.state.userLogin}
+            playGame={this.playGame}
+            loggedIn={this.state.loggedIn}/>
         }
       </div>
     );
