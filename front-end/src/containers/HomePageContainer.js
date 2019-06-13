@@ -13,12 +13,20 @@ export default class HomePageContainer extends React.Component {
           <form onSubmit={this.props.logIn}>
             <label>
               Username:
-              <input type="text" name="username" />
+              <input
+                type="text"
+                onChange={this.props.handleLogin}
+                value={this.props.user.username}
+                name="username" />
             </label>
             <br/>
             <label>
               Password:
-              <input type="password" name="password" />
+              <input
+                type="password"
+                onChange={this.props.handleLogin}
+                value={this.props.user.password}
+                name="password" />
             </label>
             <br/>
             <input type="submit" value="Log In" />

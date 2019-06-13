@@ -9,10 +9,23 @@ class App extends React.Component {
     loggedIn: false,
     gameStarted: false,
     gameOver: false,
-    playClicked: false
+    playClicked: false,
+    user: {
+      username: '',
+      password: ''
+    }
   }
 
   // HELPER FUNCTIONS
+  handleLogin = (event) => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
   gameTimeOver = () => {
     console.log('game is over');
     this.setState({ gameOver: true})
@@ -28,8 +41,8 @@ class App extends React.Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        username: 'edgar',
-        password: 'hello'
+        username: this.state.user.username,
+        password: this.state.user.password
       })
     })
       .then(r => r.json())
@@ -88,13 +101,19 @@ class App extends React.Component {
         NavBar
         {this.state.playClicked ?
           <div>
-            <GameContainer gameStarted={this.state.gameStarted}
-            gameOver={this.state.gameOver}
-            gameTimeOver={this.gameTimeOver}
-            gameStart={this.gameStart}
-            playAgainApp={this.playAgainApp}/>
+            <GameContainer
+              gameStarted={this.state.gameStarted}
+              gameOver={this.state.gameOver}
+              gameTimeOver={this.gameTimeOver}
+              gameStart={this.gameStart}
+              playAgainApp={this.playAgainApp}/>
           </div> :
-          <HomePageContainer logIn={this.logIn} playGame={this.playGame} loggedIn={this.state.loggedIn}/>
+          <HomePageContainer
+            handleLogin={this.handleLogin}
+            logIn={this.logIn}
+            user={this.state.user}
+            playGame={this.playGame}
+            loggedIn={this.state.loggedIn}/>
         }
       </div>
     );
