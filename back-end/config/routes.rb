@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       # Questions
       resources :questions, only: [:index]
       # Scores
-      resources :scores, only: [:index]
+      resources :scores, only: [:index, :create]
     end
   end
 end
