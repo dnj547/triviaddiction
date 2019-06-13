@@ -6,7 +6,7 @@ export default class MyNavBar extends React.Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home"><img src="../logo/triviaddiction_logo.png" alt="triviaddiction logo" /></Navbar.Brand>
+        <Navbar.Brand href="#home"><img src="triviaddiction_logo.png" alt="triviaddiction logo" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {this.props.loggedIn ?
           <Nav className="mr-auto">

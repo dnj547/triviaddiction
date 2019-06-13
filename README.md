@@ -59,5 +59,8 @@ CRUD actions:
 
 
 
-Install:
-* npm install react-countdown-now --save
+Do:
+* in front-end:
+  * npm install
+* in back-end:
+  * rails db:create && rails db:migrate && rails db:seed
