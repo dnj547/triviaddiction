@@ -8,16 +8,18 @@ export default class HomePageContainer extends React.Component {
         <h1>Triviaddiction</h1>
         <h2>Rules:</h2>
         <p>Answer as many questions as you can before the timer runs out!</p>
-        <p>Hi {this.props.currentUser}</p>
         {this.props.loggedIn ?
-          <button onClick={this.props.playGame}>Play</button> :
+          <div>
+            <p>Hi {this.props.currentUser.username}</p>
+            <button onClick={this.props.playGame}>Play</button>
+          </div> :
           <form onSubmit={this.props.logIn}>
             <label>
               Username:
               <input
                 type="text"
                 onChange={this.props.handleLogin}
-                value={this.props.user.username}
+                value={this.props.userLogin.username}
                 name="username" />
             </label>
             <br/>
@@ -26,7 +28,7 @@ export default class HomePageContainer extends React.Component {
               <input
                 type="password"
                 onChange={this.props.handleLogin}
-                value={this.props.user.password}
+                value={this.props.userLogin.password}
                 name="password" />
             </label>
             <br/>

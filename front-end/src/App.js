@@ -10,19 +10,21 @@ class App extends React.Component {
     gameStarted: false,
     gameOver: false,
     playClicked: false,
-    currentUser: '',
-    user: {
+    currentUser: {
       username: '',
-      password: '',
       scores: []
+    },
+    userLogin: {
+      username: '',
+      password: ''
     }
   }
 
   // HELPER FUNCTIONS
   handleLogin = (event) => {
     this.setState({
-      user: {
-        ...this.state.user,
+      userLogin: {
+        ...this.state.userLogin,
         [event.target.name]: event.target.value
       }
     })
@@ -43,8 +45,8 @@ class App extends React.Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        username: this.state.user.username,
-        password: this.state.user.password
+        username: this.state.userLogin.username,
+        password: this.state.userLogin.password
       })
     })
       .then(r => r.json())
@@ -61,7 +63,7 @@ class App extends React.Component {
         })
           .then(r => r.json())
           .then(data => {
-            if (data.username === this.state.user.username) {
+            if (data.username === this.state.userLogin.username) {
               this.setState({
                 loggedIn: true,
               })
@@ -119,7 +121,10 @@ class App extends React.Component {
             console.log("logged in")
             this.setState({
               loggedIn: true,
-              currentUser: data.username
+              currentUser: {
+                ...this.state.currentUser,
+                username: data.username
+              }
             })
           }
         })
@@ -143,7 +148,7 @@ class App extends React.Component {
             currentUser={this.state.currentUser}
             handleLogin={this.handleLogin}
             logIn={this.logIn}
-            user={this.state.user}
+            userLogin={this.state.userLogin}
             playGame={this.playGame}
             loggedIn={this.state.loggedIn}/>
         }
