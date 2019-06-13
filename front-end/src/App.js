@@ -73,6 +73,15 @@ class App extends React.Component {
 
   // end HELPER FUNCTIONS
 
+  componentDidMount() {
+    // check if current user is already logged in
+    if (!!localStorage.token) {
+      this.setState({
+        loggedIn: true
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
