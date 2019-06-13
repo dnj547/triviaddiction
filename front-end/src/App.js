@@ -12,6 +12,7 @@ class App extends React.Component {
     gameOver: false,
     playClicked: false,
     currentUser: {
+      id: '',
       username: '',
       scores: []
     },
@@ -107,6 +108,7 @@ class App extends React.Component {
               loggedIn: true,
               currentUser: {
                 ...this.state.currentUser,
+                id: data.id,
                 username: data.username
               }
             })
