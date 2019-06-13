@@ -89,6 +89,12 @@ class App extends React.Component {
     this.setState({gameStarted: false, gameOver: false})
   }
 
+  signOut = () => {
+    console.log('signing out');
+    this.setState({loggedIn: false})
+    localStorage.clear()
+  }
+
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -120,7 +126,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <MyNavBar loggedIn={this.state.loggedIn} />
+        <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut}/>
         {this.state.playClicked ?
           <div>
             <GameContainer

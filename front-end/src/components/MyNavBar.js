@@ -10,7 +10,7 @@ export default class MyNavBar extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {this.props.loggedIn ?
           <Nav className="mr-auto">
-            <Nav.Link href="/signOut">Sign Out</Nav.Link>
+            <Nav.Link onClick={this.props.signOut}>Sign Out</Nav.Link>
             <Nav.Link href="/myAccount">My Account</Nav.Link>
           </Nav> : null}
       </Navbar>
