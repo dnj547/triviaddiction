@@ -10,9 +10,11 @@ class App extends React.Component {
     gameStarted: false,
     gameOver: false,
     playClicked: false,
+    currentUser: '',
     user: {
       username: '',
-      password: ''
+      password: '',
+      scores: []
     }
   }
 
@@ -47,8 +49,24 @@ class App extends React.Component {
     })
       .then(r => r.json())
       .then(data => {
-        localStorage.setItem('token', data.token)
-        this.setState({ loggedIn: true })
+        if (!!data.token) {
+          localStorage.setItem('token', data.token)
+        }
+      })
+      .then(() => {
+        fetch(API + 'profile', {
+          headers: {
+            "Authorization": localStorage.getItem('token')
+          }
+        })
+          .then(r => r.json())
+          .then(data => {
+            if (data.username === this.state.user.username) {
+              this.setState({
+                loggedIn: true,
+              })
+            }
+          })
       })
   }
 
@@ -89,9 +107,22 @@ class App extends React.Component {
   componentDidMount() {
     // check if current user is already logged in
     if (!!localStorage.token) {
-      this.setState({
-        loggedIn: true
+      fetch(API + 'profile', {
+        headers: {
+          "Authorization": localStorage.getItem('token')
+        }
       })
+        .then(r => r.json())
+        .then(data => {
+          // debugger
+          if (!!data.username) {
+            console.log("logged in")
+            this.setState({
+              loggedIn: true,
+              currentUser: data.username
+            })
+          }
+        })
     }
   }
 
@@ -109,6 +140,7 @@ class App extends React.Component {
               playAgainApp={this.playAgainApp}/>
           </div> :
           <HomePageContainer
+            currentUser={this.state.currentUser}
             handleLogin={this.handleLogin}
             logIn={this.logIn}
             user={this.state.user}
