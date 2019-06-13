@@ -30,12 +30,13 @@ export default class Questions extends React.Component {
 
   allQuestions = () => {
     return this.state.questions.slice(0,1).map(question => {
-      return <Question
-                key={question.question}
-                question={question}
-                removeQuestionAnswered={this.removeQuestionAnswered}
-                updateCorrectAnswers={this.updateCorrectAnswers}/>
-
+      return (
+        <Question
+          key={question.question}
+          question={question}
+          removeQuestionAnswered={this.removeQuestionAnswered}
+          updateCorrectAnswers={this.updateCorrectAnswers} />
+      )
     })
   }
 
@@ -59,21 +60,25 @@ export default class Questions extends React.Component {
     })
   } // end updateCorrectAnswers
 
-  playAgainQuestions = () => {
-    // console.log('playAgainQuestions');
-    this.componentWillUnmount();
-  }
-
-  componentWillUnmount() {
-    console.log('Questions component will unmount');
-    this.props.playAgainApp();
-  }
+  // playAgainQuestions = () => {
+  //   // console.log('playAgainQuestions');
+  //   this.componentWillUnmount();
+  // }
+  //
+  // componentWillUnmount() {
+  //   console.log('Questions component will unmount');
+  //   this.props.playAgainApp();
+  // }
 
   render() {
     return (
       <div>
         {this.props.gameOver ?
-          <Ending score={this.state.correctAnswers.length} playAgain={this.playAgainQuestions} /> :
+          <Ending
+            currentUser={this.props.currentUser}
+            score={this.state.correctAnswers.length}
+            playAgainApp={this.props.playAgainApp}
+             /> :
           <div>
             <Scores correctAnswers={this.state.correctAnswers.length} />
             {this.allQuestions()}
