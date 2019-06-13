@@ -96,9 +96,26 @@ class App extends React.Component {
     this.setState({gameStarted: true})
   }
 
-  playAgainApp = () => {
+  playAgainApp = (event) => {
     console.log('playing game again');
-    this.setState({gameStarted: false, gameOver: false})
+    fetch(API + 'api/v1/scores', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        user_id: event.currentTarget.dataset.user,
+        score: parseInt(event.currentTarget.dataset.score)
+      })
+    })
+      .then(r => r.json())
+      .then(() => {
+        this.setState({
+          gameStarted: false,
+          gameOver: false
+        })
+      })
   }
 
   signOut = () => {
@@ -141,13 +158,13 @@ class App extends React.Component {
     return (
 
 
-      <Router>
-        <div className="app">
-          <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
-          <Route exact path="/" render={(routerProps)=>HomePageContainer} />
-
-        </div>
-      </Router>
+      // <Router>
+      //   <div className="app">
+      //     <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
+      //     <Route exact path="/" render={(routerProps)=>HomePageContainer} />
+      //
+      //   </div>
+      // </Router>
 
 
       <div className="App">

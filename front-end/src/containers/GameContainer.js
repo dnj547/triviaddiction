@@ -27,7 +27,9 @@ export default class GameContainer extends React.Component {
               renderer={renderer}
               onComplete={() => this.props.gameTimeOver()}
               date={Date.now() + 5000} />
-            <Questions gameStarted={this.props.gameStarted}
+            <Questions
+              currentUser={this.props.currentUser}
+              gameStarted={this.props.gameStarted}
               gameOver={this.props.gameOver}
               gameTimeOver={this.props.gameTimeOver}
               gameStart={this.props.gameStart}
