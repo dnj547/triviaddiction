@@ -6,12 +6,12 @@ export default class MyNavBar extends React.Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home"><img src="triviaddiction_logo.png" alt="triviaddiction logo" /></Navbar.Brand>
+        <Navbar.Brand href="/"><img src="triviaddiction_logo.png" alt="triviaddiction logo" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {this.props.loggedIn ?
           <Nav className="mr-auto">
             <Nav.Link onClick={this.props.signOut}>Sign Out</Nav.Link>
-            <Nav.Link href="/myAccount">My Account</Nav.Link>
+            <Nav.Link onClick={this.props.myAccount}>My Account</Nav.Link>
           </Nav> : null}
       </Navbar>
     )

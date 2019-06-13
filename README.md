@@ -64,3 +64,5 @@ Do:
   * npm install
 * in back-end:
   * rails db:create && rails db:migrate && rails db:seed
+* in front-end:
+  * npm start

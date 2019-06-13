@@ -12,11 +12,13 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 
 export default class GameContainer extends React.Component {
 
-  // HELPER FUNCTIONS
-  // end HELPER FUNCTIONS
+  componentDidMount() {
+    console.log('GameContainer componentDidMount');
+  }
 
   render() {
     console.log('GameContainer props', this.props);
+    console.log('');
     return (
       <div>
         {this.props.gameStarted ?

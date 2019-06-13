@@ -2,8 +2,13 @@ import React from 'react';
 import Form from '../components/Form'
 
 export default class HomePageContainer extends React.Component {
+
+  componentDidMount() {
+    console.log('HomePageContainer componentDidMount');
+  }
+
   render() {
-    console.log('HomePageContainer props', this.props);
+    // console.log('HomePageContainer props', this.props);
     return (
       <div>
         <h1>Triviaddiction</h1>
