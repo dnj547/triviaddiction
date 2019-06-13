@@ -7,8 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-require 'rest-client'
+# require 'rest-client'
+#
+# response = RestClient.get('https://opentdb.com/api.php?amount=10&difficulty=easy')
+#
+# puts response
 
-response = RestClient.get('https://opentdb.com/api.php?amount=10&difficulty=easy')
-
-puts response
+User.create(username: "danielle", password: "pw123");
+User.create(username: "edgar", password: "hello");
