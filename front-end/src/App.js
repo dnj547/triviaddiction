@@ -79,7 +79,10 @@ class App extends React.Component {
             if (data.username === this.state.userForm.username) {
               this.setState({
                 loggedIn: true,
-                currentUser: {}
+                currentUser: {
+                  id: data.id,
+                  username: data.username
+                }
               })
             }
           })
