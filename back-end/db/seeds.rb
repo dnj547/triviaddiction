@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'rest-client'
+
+response = RestClient.get('https://opentdb.com/api.php?amount=10&difficulty=easy')
+
+puts response

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
   end
 
   def decoded_token
-    JWT.decode token, 'hellohellohello', true, { algorithm: 'HS256' }
+    JWT.decode(token, 'hellohellohello', true, { algorithm: 'HS256' })
   end
 
   def current_user
