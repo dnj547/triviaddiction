@@ -186,7 +186,7 @@ class App extends React.Component {
     // console.log('App state', this.state);
     return (
       <Router>
-        <div className="app">
+        <div className="container">
           <MyNavBar
             loggedIn={this.state.loggedIn}
             playGame={this.playGame}/>

@@ -20,7 +20,7 @@ export default class GameContainer extends React.Component {
     console.log('GameContainer props', this.props);
     console.log('');
     return (
-      <div className="container">
+      <div>
         {this.props.gameStarted ?
           <div>
             <Countdown
