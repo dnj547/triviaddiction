@@ -19,6 +19,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    logged_in_user.update(user_params)
+
+    if logged_in_user.save
+      render json: logged_in_user
+    end
+  end
+
   def profile
     render json: logged_in_user
   end

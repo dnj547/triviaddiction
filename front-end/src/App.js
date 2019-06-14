@@ -137,9 +137,33 @@ class App extends React.Component {
     this.setState({editingAccount: true})
   }
 
-  doneEditingAccount = () => {
-    console.log('done editing account');
-    this.setState({editingAccount: false})
+  doneEditingAccount = (event) => {
+    console.log('done editing account', this.state);
+    event.preventDefault()
+
+    fetch(API + 'edit', {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        username: this.state.userForm.username,
+        password: this.state.userForm.password
+      })
+    })
+      .then(r => r.json())
+      .then(data => {
+        this.setState({
+          editingAccount: false,
+          currentUser: {
+            ...this.state.currentUser,
+            username: data.username
+          }
+        })
+      })
+
   }
 
   deleteAccount = () => {
@@ -178,7 +202,6 @@ class App extends React.Component {
             })
           }
         })
-
     } // end if
   } // end componentDidMount
 
@@ -210,13 +233,15 @@ class App extends React.Component {
             time={this.state.time}
             timeSet={this.state.timeSet} />}/>
           <Route exact path='/scores' render={() => <ScoreBoard />} />
-          <Route exact path='/account' render={()=><MyAccount
-            currentUser={this.state.currentUser}
-            signOut={this.signOut}
-            editAccount={this.editAccount}
-            editingAccount={this.state.editingAccount}
-            doneEditingAccount={this.doneEditingAccount}
-            deleteAccount={this.deleteAccount} />} />
+          <Route exact path='/account' render={() => <MyAccount
+              handleForm={this.handleForm}
+              userForm={this.state.userForm}
+              currentUser={this.state.currentUser}
+              signOut={this.signOut}
+              editAccount={this.editAccount}
+              editingAccount={this.state.editingAccount}
+              doneEditingAccount={this.doneEditingAccount}
+              deleteAccount={this.deleteAccount} />} />
         </div>
       </Router>
     );
