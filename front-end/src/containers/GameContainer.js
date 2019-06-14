@@ -1,19 +1,20 @@
 import React from 'react';
 import Questions from '../components/Questions';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
-
+import { DropdownButton, Dropdown, ProgressBar } from 'react-bootstrap';
 
 
 // Countdown
 import Countdown from 'react-countdown-now'
-const renderer = ({ hours, minutes, seconds, completed }) => {
-  return <span>{seconds}</span>;
-};
 // end Countdown
 
 export default class GameContainer extends React.Component {
+  state = {
+    timeNow: ''
+  }
 
+  renderer = ({ hours, minutes, seconds, completed }) => {
+    return <ProgressBar now={seconds} max={this.props.time} />;
+  };
   componentDidMount() {
     console.log('GameContainer componentDidMount');
   }
@@ -30,6 +31,14 @@ export default class GameContainer extends React.Component {
     })
   }
 
+  handleChange = (event) => {
+    debugger
+    console.log(event)
+    this.setState({
+      timeNow: 2
+    })
+  }
+
   render() {
     console.log('GameContainer props', this.props);
     console.log('');
@@ -37,8 +46,9 @@ export default class GameContainer extends React.Component {
       <div>
         {this.props.gameStarted ?
           <div>
+
             <Countdown
-              renderer={renderer}
+              renderer={this.renderer}
               onComplete={() => this.props.gameTimeOver()}
               date={Date.now() + this.props.time*1000} />
             <Questions
