@@ -1,6 +1,6 @@
 import React from "react"
 
-const ScoreApi = 'http://localhost:3000/api/v1/users'
+const ScoreApi = 'http://localhost:3000/api/v1/scores'
 export default class ScoreBoard extends React.Component {
   state = {
     scores: []
@@ -10,15 +10,37 @@ export default class ScoreBoard extends React.Component {
       .then(r => r.json())
       .then(scores => {
         this.setState({ scores })
-        // debugger
       })
+  }
+
+  showScores = () => {
+    return (
+      <table>
+        <thead>
+          <tr>
+            <td>Username</td>
+            <td>Score</td>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.scores.splice(0,9).map(score => {
+            return (
+              <tr key={score.id}>
+                <td>{score.user.username}</td>
+                <td>{score.score}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    )
   }
   render() {
     console.log("ScoreBoard", this.state)
     return (
       <div>
         ScoreBoard
-
+        {this.showScores()}
 
       </div>
     )
