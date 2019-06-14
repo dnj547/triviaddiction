@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  def index
+    user = User.all
+
+    render json: user
+  end
+
   def create
     # params: { username: '', password: '' }
 
@@ -14,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: current_user
+    render json: logged_in_user
   end
 
   private

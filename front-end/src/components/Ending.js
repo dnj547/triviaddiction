@@ -1,11 +1,12 @@
 import React from "react"
+import Scores from "./Scores"
 
 export default class Ending extends React.Component {
   render() {
     console.log("ending", this.props.currentUser)
     return (
       <div>
-        Score: {this.props.score}
+        <Scores score={this.props.score}/>
         <p></p>
         <button
           data-user={this.props.currentUser.id}

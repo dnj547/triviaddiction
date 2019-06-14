@@ -80,7 +80,7 @@ export default class Questions extends React.Component {
             playAgainApp={this.props.playAgainApp}
              /> :
           <div>
-            <Scores correctAnswers={this.state.correctAnswers.length} />
+            <Scores score={this.state.correctAnswers.length} />
             {this.allQuestions()}
           </div>
         }

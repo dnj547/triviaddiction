@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from '../components/Form'
+import ScoreBoard from '../components/ScoreBoard'
 
 export default class HomePageContainer extends React.Component {
 
@@ -25,6 +26,8 @@ export default class HomePageContainer extends React.Component {
             handleForm={this.props.handleForm}
             userForm={this.props.userForm} />
         }
+
+        <ScoreBoard currentUser={this.props.currentUser} />
       </div>
     )
   }

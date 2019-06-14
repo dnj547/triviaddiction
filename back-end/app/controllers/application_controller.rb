@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
     JWT.decode(token, 'hellohellohello', true, { algorithm: 'HS256' })
   end
 
-  def current_user
+  def logged_in_user
     User.find(decoded_token[0]["user_id"])
   end
 end
