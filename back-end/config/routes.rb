@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/signup', to: "users#create"
   get '/profile', to: "users#profile"
   patch '/edit', to: "users#edit"
+  delete '/delete', to: "users#delete"
   # get '/api/v1/users', to: "users#index"
 
   namespace :api do
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
       # Questions
       resources :questions, only: [:index]
       # Scores
-      resources :scores, only: [:index, :create]
+      resources :scores, only: [:index, :create, :delete]
     end
   end
 end

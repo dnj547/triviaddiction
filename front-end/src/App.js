@@ -178,11 +178,21 @@ class App extends React.Component {
           }
         })
       })
+  } // end doneEditingAccount
 
-  }
+  deleteAccount = (event) => {
+    console.log('deleting account', event.currentTarget.id);
+    event.preventDefault()
 
-  deleteAccount = () => {
-    console.log('deleting account');
+    fetch(API + 'delete', {
+      method: "DELETE",
+      headers: {
+        "Authorization": localStorage.getItem("token")
+      }
+    })
+    this.setState({ loggedIn: false, currentUser: null })
+    localStorage.clear()
+    window.location.href = "/"
   }
 
   setTime = (e) => {
