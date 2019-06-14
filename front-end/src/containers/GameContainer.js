@@ -26,7 +26,7 @@ export default class GameContainer extends React.Component {
             <Countdown
               renderer={renderer}
               onComplete={() => this.props.gameTimeOver()}
-              date={Date.now() + 50000} />
+              date={Date.now() + this.props.time*1000} />
             <Questions
               currentUser={this.props.currentUser}
               gameStarted={this.props.gameStarted}
@@ -38,7 +38,16 @@ export default class GameContainer extends React.Component {
         :
           <div>
             <p>Hi {this.props.currentUser.username}</p>
-            <button className="btn btn-primary bold-it" onClick={() => this.props.gameStart()}>Start Game</button>
+            {this.props.timeSet ?
+              <button className="btn btn-primary" onClick={() => this.props.gameStart()}>Start Game</button>
+              :
+              <div>
+                <button className="btn btn-primary" id="15" onClick={(e)=>this.props.setTime(e)}>15 Seconds</button>
+                <button className="btn btn-primary" id="30" onClick={(e)=>this.props.setTime(e)}>30 Seconds</button>
+                <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
+              </div>
+            }
+
           </div>
         }
       </div>
