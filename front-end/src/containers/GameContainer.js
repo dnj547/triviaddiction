@@ -13,7 +13,9 @@ export default class GameContainer extends React.Component {
   }
 
   renderer = ({ hours, minutes, seconds, completed }) => {
-    return <ProgressBar now={seconds} max={this.props.time} />;
+    return (
+      <ProgressBar variant="warning" label={seconds} now={seconds} max={this.props.time} />
+    )
   };
   componentDidMount() {
     console.log('GameContainer componentDidMount');
