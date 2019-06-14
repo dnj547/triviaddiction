@@ -14,6 +14,11 @@ export default class ScoreBoard extends React.Component {
   }
 
   showScores = () => {
+    fetch(ScoreApi)
+      .then(r => r.json())
+      .then(scores => {
+        this.setState({ scores })
+      })
     return (
       <table>
         <thead>
@@ -39,9 +44,7 @@ export default class ScoreBoard extends React.Component {
     console.log("ScoreBoard", this.state)
     return (
       <div>
-        ScoreBoard
-        {this.showScores()}
-
+        {this.state.scores.length > 0 ? this.showScores() : "No scores yet, be the first to play!"}
       </div>
     )
   }
