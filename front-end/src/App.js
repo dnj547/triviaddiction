@@ -140,6 +140,10 @@ class App extends React.Component {
     this.setState({editingAccount: false})
   }
 
+  deleteAccount = () => {
+    console.log('deleting account');
+  }
+
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -199,7 +203,8 @@ class App extends React.Component {
             signOut={this.signOut}
             editAccount={this.editAccount}
             editingAccount={this.state.editingAccount}
-            doneEditingAccount={this.doneEditingAccount} />} />
+            doneEditingAccount={this.doneEditingAccount}
+            deleteAccount={this.deleteAccount} />} />
         </div>
       </Router>
     );
