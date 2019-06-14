@@ -76,7 +76,7 @@ export default class Question extends React.Component {
     return (
       <div className="row justify-content-center">
 
-        <div className="col-sm-8 text-center brown-shadow border-0 p-4 m-4 rounded">
+        <div className="col text-center brown-shadow border-0 p-4 m-4 question-rounded">
           <h2 className="p-4 m-4 bg-white">{entities.decode(this.props.question.question)}</h2>
 
           <div>
