@@ -19,6 +19,7 @@ export default class Questions extends React.Component {
     this.fetchQuestions()
   }
 
+  // HELPER FUNCTIONS
   fetchQuestions = () => {
     console.log('fetching questions');
     fetch(API)
@@ -41,11 +42,9 @@ export default class Questions extends React.Component {
   }
 
   removeQuestionAnswered = (e) => {
-    // console.log('removequestionanswered', e);
     let newQuestions = this.state.questions.filter(question=>{
       return question.question !== e.target.dataset.question
     })
-    // console.log('new questions', newQuestions);
 
     if (this.state.questions.length <=1) {
       this.fetchQuestions()
@@ -59,16 +58,7 @@ export default class Questions extends React.Component {
       correctAnswers: [...this.state.correctAnswers, event.target.id]
     })
   } // end updateCorrectAnswers
-
-  // playAgainQuestions = () => {
-  //   // console.log('playAgainQuestions');
-  //   this.componentWillUnmount();
-  // }
-  //
-  // componentWillUnmount() {
-  //   console.log('Questions component will unmount');
-  //   this.props.playAgainApp();
-  // }
+  // end HELPER FUNCTIONS
 
   render() {
     return (
