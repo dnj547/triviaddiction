@@ -1,6 +1,7 @@
 import React from "react"
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import {Link} from 'react-router-dom';
 
 export default class MyNavBar extends React.Component {
   render() {
@@ -10,8 +11,9 @@ export default class MyNavBar extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {this.props.loggedIn ?
           <Nav className="mr-auto">
-            <Nav.Link onClick={this.props.signOut}>Sign Out</Nav.Link>
-            <Nav.Link onClick={this.props.myAccount}>My Account</Nav.Link>
+            <Link to="/play">New Game</Link>
+            <Link to="/scores">High Scores</Link>
+            <Link to="/account">My Account</Link>
           </Nav> : null}
       </Navbar>
     )
