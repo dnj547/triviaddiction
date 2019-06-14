@@ -19,18 +19,23 @@ export default class Question extends React.Component {
     // check if current answer is correct
     if (event.target.id === this.state.correct_answer) {
       // if true turn background green
-      event.target.style.background = "green"
+      event.target.style.background = "#508688"
+      event.target.style.color = "#fff"
 
       this.props.updateCorrectAnswers(event)
-
-    } else {
+      // only one click
+      this.setState({
+        answered: true
+      })
+    } else if (event.target.id !== this.state.correct_answer && !!event.target.id ){
       // else background red
-      event.target.style.background = "red"
+      event.target.style.background = "#FBA9A7"
+      event.target.style.color = "#212121"
+      // only one click
+      this.setState({
+        answered: true
+      })
     }
-    // only one click
-    this.setState({
-      answered: true
-    })
     // this.props.removeQuestionAnswered(event)
   }
 
@@ -56,13 +61,10 @@ export default class Question extends React.Component {
 
   render() {
 
-    // console.log('Question component props', this.props);
-    // console.log("Question state: ", this.state)
-
     const displayShuffleAnswers = this.state.answers.map(answer => {
       return (
         <li
-          className="list-group-item list-group-item-action pointer"
+          className="list-group-item pointer rounded-pill blue-border mb-4"
           id={answer}
           key={answer}
           data-question={this.props.question.question}>
@@ -72,21 +74,30 @@ export default class Question extends React.Component {
     })
 
     return (
-      <div className="card text-center">
-        <h2 className="card-header">{entities.decode(this.props.question.question)}</h2>
-        <div className="card-body">
-          <ul
-            className="list-group list-group-flush"
-            onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
-            {displayShuffleAnswers}
-          </ul>
+      <div className="row justify-content-center">
 
-          {this.state.answered ? <button
-            className="btn btn-primary"
-            onClick={(e)=>this.props.removeQuestionAnswered(e)}
-            data-question={this.props.question.question}>
-              Next Question
-            </button> : null}
+        <div className="col text-center brown-shadow border-0 p-4 m-4 question-rounded">
+          <h2 className="p-4 m-4 bg-white">{entities.decode(this.props.question.question)}</h2>
+
+          <div>
+            <ul
+              className="list-group"
+              onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
+              <div className="row justify-content-center">
+                <div className="col-sm-8">
+                  {displayShuffleAnswers}
+                </div>
+              </div>
+            </ul>
+
+            {this.state.answered ? <button
+              className="btn brown-bg text-light bold-it"
+              onClick={(e)=>this.props.removeQuestionAnswered(e)}
+              data-question={this.props.question.question}>
+                Next Question
+              </button> : null}
+          </div>
+
         </div>
       </div>
     )
