@@ -4,6 +4,7 @@ import GameContainer from './containers/GameContainer';
 import HomePageContainer from './containers/HomePageContainer';
 import MyNavBar from './components/MyNavBar'
 import MyAccount from './components/MyAccount'
+import ScoreBoard from './components/ScoreBoard'
 
 const API = 'http://localhost:3000/'
 
@@ -157,36 +158,32 @@ class App extends React.Component {
     } // end if
   } // end componentDidMount
 
-  homePageOrGameCont = () => {
-    if (!this.state.loggedIn) {
-      return <HomePageContainer
-        currentUser={this.state.currentUser}
-        signUpLogIn={this.signUpLogIn}
-        signUp={this.state.signUp}
-        handleForm={this.handleForm}
-        logIn={this.logIn}
-        userForm={this.state.userForm}
-        playGame={this.playGame}
-        loggedIn={this.state.loggedIn}/>
-    } else {
-      return <GameContainer
-        currentUser={this.state.currentUser}
-        gameStarted={this.state.gameStarted}
-        gameOver={this.state.gameOver}
-        gameTimeOver={this.gameTimeOver}
-        gameStart={this.gameStart}
-        playAgainApp={this.playAgainApp}/>
-    }
-  }
-
   render() {
     // console.log('App state', this.state);
     return (
       <Router>
         <div className="app">
-          <MyNavBar loggedIn={this.state.loggedIn} signOut={this.signOut} />
-          <Route exact path='/' render={() => this.homePageOrGameCont()} />
-          <Route exact path='/account' render={()=><MyAccount currentUser={this.state.currentUser}/>} />
+          <MyNavBar loggedIn={this.state.loggedIn} playGame={this.playGame}/>
+          <Route exact path='/' render={() => <HomePageContainer
+            currentUser={this.state.currentUser}
+            signUpLogIn={this.signUpLogIn}
+            signUp={this.state.signUp}
+            handleForm={this.handleForm}
+            logIn={this.logIn}
+            userForm={this.state.userForm}
+            playGame={this.playGame}
+            loggedIn={this.state.loggedIn}/>} />
+          <Route exact path='/play' render={() => <GameContainer
+            currentUser={this.state.currentUser}
+            gameStarted={this.state.gameStarted}
+            gameOver={this.state.gameOver}
+            gameTimeOver={this.gameTimeOver}
+            gameStart={this.gameStart}
+            playAgainApp={this.playAgainApp}/>} />
+          <Route exact path='/scores' render={() => <ScoreBoard />} />
+          <Route exact path='/account' render={()=><MyAccount
+            currentUser={this.state.currentUser}
+            signOut={this.signOut}/>} />
         </div>
       </Router>
     );
