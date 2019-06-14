@@ -19,7 +19,7 @@ export default class Question extends React.Component {
     // check if current answer is correct
     if (event.target.id === this.state.correct_answer) {
       // if true turn background green
-      event.target.style.background = "#508688"
+      event.target.style.background = "#5CB75C"
       event.target.style.color = "#fff"
 
       this.props.updateCorrectAnswers(event)
@@ -29,7 +29,7 @@ export default class Question extends React.Component {
       })
     } else if (event.target.id !== this.state.correct_answer && !!event.target.id ){
       // else background red
-      event.target.style.background = "#FBA9A7"
+      event.target.style.background = "#FC4A45"
       event.target.style.color = "#212121"
       // only one click
       this.setState({
