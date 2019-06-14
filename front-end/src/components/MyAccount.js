@@ -14,13 +14,14 @@ export default class MyAccount extends React.Component {
           </button>
         </Link>
         {this.props.editingAccount ?
-          <form onSubmit={this.props.doneEditingAccount}>
+          <form onSubmit={event => this.props.doneEditingAccount(event)}>
             <label>
               Username:
               <input
                 type="text"
-                onChange={this.props.handleChange}
-                value={this.props.currentUser.username}
+                onChange={this.props.handleForm}
+                placeholder={this.props.currentUser.username}
+                value={this.props.userForm.username}
                 name="username" />
             </label>
             <br/>
@@ -28,9 +29,9 @@ export default class MyAccount extends React.Component {
               Password:
               <input
                 type="password"
-                onChange={this.props.handleChange}
-                value={this.props.currentUser.password}
-                name="password" />
+                onChange={this.props.handleForm}
+                value={this.props.userForm.password}
+                name="password" required />
             </label>
             <br/>
             <input type="submit" value="Submit" />

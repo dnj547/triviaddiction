@@ -46,15 +46,23 @@ h1, h2, h3, h4, h5 {
   background: #6A3701;
   opacity: 0.8;
 }
-
 .brown-bg:hover {
   transition-timing-function: ease-in-out;
   transition: 0.15s;
   opacity: 1
 }
 
+
 .teal-bg {
-  background: #508688
+  background: #508688;
+  color: #fff;
+  font-weight: bold;
+  opacity: 1
+}
+.teal-bg:hover {
+  transition-timing-function: ease-in-out;
+  transition: 0.15s;
+  opacity: 0.8
 }
 
 .pink-bg {
