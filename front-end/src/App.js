@@ -29,7 +29,8 @@ class App extends React.Component {
     editingAccount: false,
     time: 60,
     timeSet: false,
-    categories: []
+    categories: [],
+    categorySelected: {}
   }
 
   // HELPER FUNCTIONS
@@ -39,7 +40,8 @@ class App extends React.Component {
     fetch(CATEGORIES_API)
     .then(r=>r.json())
     .then(categories=>{
-      this.setState({categories: categories.trivia_categories})
+      let tenRandomCategories = [...categories.trivia_categories].sort(() => Math.random() - 0.5).slice(0,10)
+      this.setState({categories: tenRandomCategories})
     })
   }
 
@@ -166,6 +168,16 @@ class App extends React.Component {
     this.setState({timeSet: true})
   }
 
+  setCategory = (e) => {
+    console.log('setting category');
+    // console.log(e.currentTarget.id);
+    let categorySelected = this.state.categories.filter(category=>{
+      return category.id === parseInt(e.currentTarget.id, 10)
+    })
+    this.setState({categorySelected: categorySelected[0]})
+    this.setState({categorySet: true})
+  }
+
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -221,7 +233,11 @@ class App extends React.Component {
             playAgainApp={this.playAgainApp}
             setTime={this.setTime}
             time={this.state.time}
-            timeSet={this.state.timeSet} />}/>
+            timeSet={this.state.timeSet}
+            categories={this.state.categories}
+            setCategory={this.setCategory}
+            categorySelected={this.state.categorySelected}
+            categorySet={this.state.categorySet} />}/>
           <Route exact path='/scores' render={() => <ScoreBoard />} />
           <Route exact path='/account' render={()=><MyAccount
             currentUser={this.state.currentUser}

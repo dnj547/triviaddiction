@@ -18,6 +18,18 @@ export default class GameContainer extends React.Component {
     console.log('GameContainer componentDidMount');
   }
 
+  createCategoryDropdownItems = () => {
+    // console.log('creating category dropdown items');
+    // console.log(this.props.categories);
+    return this.props.categories.map(category=>{
+      return <Dropdown.Item
+              onClick={(e)=>this.props.setCategory(e)}
+              key={category.id}
+              id={category.id}>{category.name}
+            </Dropdown.Item>
+    })
+  }
+
   render() {
     console.log('GameContainer props', this.props);
     console.log('');
@@ -42,24 +54,31 @@ export default class GameContainer extends React.Component {
             <p>Hi {this.props.currentUser.username}</p>
               <div>
                 <div>
+                  Choose a time limit for your game:
+                  <br/>
                   <button className="btn btn-primary" id="15" onClick={(e)=>this.props.setTime(e)}>15 Seconds</button>
                   <button className="btn btn-primary" id="30" onClick={(e)=>this.props.setTime(e)}>30 Seconds</button>
                   <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
                 </div>
                 <br/>
                 <div>
-                  <DropdownButton id="dropdown-basic-button" title="Category">
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                  </DropdownButton>
+                  Choose a category:
+                  <br/>
+                  {this.props.categorySelected.name ?
+                    <DropdownButton id="dropdown-basic-button" title={this.props.categorySelected.name} >
+                      {this.createCategoryDropdownItems()}
+                    </DropdownButton>
+                    :
+                    <DropdownButton id="dropdown-basic-button" title="Category" >
+                      {this.createCategoryDropdownItems()}
+                    </DropdownButton>
+                  }
                 </div>
                 <br/>
                 {this.props.timeSet && this.props.categorySet ?
                   <button className="btn btn-primary" onClick={() => this.props.gameStart()}>Start Game</button>
                   :
                   <button className="btn btn-primary" disabled>Start Game</button>
-
                 }
               </div>
 
