@@ -8,7 +8,6 @@ import ScoreBoard from './components/ScoreBoard'
 
 const API = 'http://localhost:3000/'
 const CATEGORIES_API = 'https://opentdb.com/api_category.php'
-const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=35&' //add category=CATEGORY_ID
 
 class App extends React.Component {
   state = {
@@ -40,8 +39,11 @@ class App extends React.Component {
     fetch(CATEGORIES_API)
     .then(r=>r.json())
     .then(categories=>{
-      let tenRandomCategories = [...categories.trivia_categories].sort(() => Math.random() - 0.5).slice(0,10)
-      this.setState({categories: tenRandomCategories})
+      let categoriesWithManyQuestions = [9, 10, 11, 12, 14, 15, 16, 17, 18, 21, 22, 23, 27, 28, 31, 32]
+      let filteredCategories = [...categories.trivia_categories].filter(category=>{
+        return categoriesWithManyQuestions.includes(category.id)
+      })
+      this.setState({categories: filteredCategories})
     })
   }
 
