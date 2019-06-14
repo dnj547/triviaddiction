@@ -2,6 +2,11 @@ import React from "react";
 import {Link} from 'react-router-dom';
 
 export default class MyAccount extends React.Component {
+  componentDidMount() {
+    if (!this.props.loggedIn) {
+      window.location.href = "/"
+    } 
+  }
 
   render() {
     console.log('MyAccount props', this.props);
