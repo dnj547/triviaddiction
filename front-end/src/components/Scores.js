@@ -5,7 +5,7 @@ export default class Scores extends React.Component {
     return (
       <div>
         <b>Current Score:</b>
-        {this.props.correctAnswers}
+        {this.props.score}
       </div>
     )
   }
