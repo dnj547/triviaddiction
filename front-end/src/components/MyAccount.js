@@ -40,6 +40,10 @@ export default class MyAccount extends React.Component {
             Edit Account
           </button>
         }
+        <br/>
+        <button onClick={() => {if (window.confirm('Are you sure you wish to delete your account?')) this.props.deleteAccount()}}>
+          Delete Account
+        </button>
       </div>
     )
   }
