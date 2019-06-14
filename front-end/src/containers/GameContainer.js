@@ -47,7 +47,8 @@ export default class GameContainer extends React.Component {
               gameOver={this.props.gameOver}
               gameTimeOver={this.props.gameTimeOver}
               gameStart={this.props.gameStart}
-              playAgainApp={this.props.playAgainApp}/>
+              playAgainApp={this.props.playAgainApp}
+              categorySelected={this.props.categorySelected}/>
           </div>
         :
           <div>

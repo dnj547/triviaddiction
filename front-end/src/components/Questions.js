@@ -4,7 +4,7 @@ import Scores from '../components/Scores'
 import Ending from '../components/Ending'
 
 const API = 'https://opentdb.com/api.php?amount=50'
-
+const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=50&category=' //add CATEGORY_ID
 
 export default class Questions extends React.Component {
 
@@ -22,7 +22,7 @@ export default class Questions extends React.Component {
   // HELPER FUNCTIONS
   fetchQuestions = () => {
     console.log('fetching questions');
-    fetch(API)
+    fetch(API_WITH_CATEGORY + `${this.props.categorySelected.id}`)
     .then(r=>r.json())
     .then(questions=>{
       this.setState({questions: questions.results, answeredQuestion: [], correctAnswers: []})
@@ -61,6 +61,8 @@ export default class Questions extends React.Component {
   // end HELPER FUNCTIONS
 
   render() {
+    console.log('Questions props', this.props);
+    console.log('Questions state', this.state);
     return (
       <div>
         {this.props.gameOver ?
