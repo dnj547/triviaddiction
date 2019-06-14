@@ -23,16 +23,19 @@ export default class Question extends React.Component {
       event.target.style.color = "#fff"
 
       this.props.updateCorrectAnswers(event)
-
-    } else {
+      // only one click
+      this.setState({
+        answered: true
+      })
+    } else if (event.target.id !== this.state.correct_answer && !!event.target.id ){
       // else background red
       event.target.style.background = "#FBA9A7"
-      event.target.style.color = "#fff"
+      event.target.style.color = "#212121"
+      // only one click
+      this.setState({
+        answered: true
+      })
     }
-    // only one click
-    this.setState({
-      answered: true
-    })
     // this.props.removeQuestionAnswered(event)
   }
 
@@ -75,6 +78,7 @@ export default class Question extends React.Component {
 
         <div className="col-sm-8 text-center brown-shadow border-0 p-4 m-4 rounded">
           <h2 className="p-4 m-4 bg-white">{entities.decode(this.props.question.question)}</h2>
+
           <div>
             <ul
               className="list-group"
@@ -93,6 +97,7 @@ export default class Question extends React.Component {
                 Next Question
               </button> : null}
           </div>
+
         </div>
       </div>
     )
