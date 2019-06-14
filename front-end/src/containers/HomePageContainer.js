@@ -1,6 +1,8 @@
 import React from 'react';
-import Form from '../components/Form'
-import ScoreBoard from '../components/ScoreBoard'
+import Form from '../components/Form';
+import ScoreBoard from '../components/ScoreBoard';
+import {Link} from 'react-router-dom';
+
 
 export default class HomePageContainer extends React.Component {
 
@@ -17,7 +19,9 @@ export default class HomePageContainer extends React.Component {
         <p>Answer as many questions as you can before the timer runs out!</p>
         {this.props.loggedIn ?
           <div>
-            <button onClick={this.props.playGame}>Play</button>
+            <Link to='/play'>
+              <button onClick={this.props.playGame}>Play</button>
+            </Link>
           </div> :
           <Form
             signUpLogIn={this.props.signUpLogIn}
