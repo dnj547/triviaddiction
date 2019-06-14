@@ -1,6 +1,6 @@
 class Api::V1::ScoresController < ApplicationController
   def index
-    @scores = Score.all
+    @scores = Score.player_scores
     render json: @scores
   end
 
