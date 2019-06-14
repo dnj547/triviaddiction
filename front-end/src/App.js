@@ -7,6 +7,8 @@ import MyAccount from './components/MyAccount'
 import ScoreBoard from './components/ScoreBoard'
 
 const API = 'http://localhost:3000/'
+const CATEGORIES_API = 'https://opentdb.com/api_category.php'
+const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=35&' //add category=CATEGORY_ID
 
 class App extends React.Component {
   state = {
@@ -26,10 +28,23 @@ class App extends React.Component {
     signUp: true,
     editingAccount: false,
     time: 60,
-    timeSet: false
+    timeSet: false,
+    categories: [],
+    categorySelected: {}
   }
 
   // HELPER FUNCTIONS
+
+  fetchCategories = () => {
+    console.log('fetching categories');
+    fetch(CATEGORIES_API)
+    .then(r=>r.json())
+    .then(categories=>{
+      let tenRandomCategories = [...categories.trivia_categories].sort(() => Math.random() - 0.5).slice(0,10)
+      this.setState({categories: tenRandomCategories})
+    })
+  }
+
   signUpLogIn = (event) => {
     event.preventDefault()
     this.setState({
@@ -177,6 +192,16 @@ class App extends React.Component {
     this.setState({timeSet: true})
   }
 
+  setCategory = (e) => {
+    console.log('setting category');
+    // console.log(e.currentTarget.id);
+    let categorySelected = this.state.categories.filter(category=>{
+      return category.id === parseInt(e.currentTarget.id, 10)
+    })
+    this.setState({categorySelected: categorySelected[0]})
+    this.setState({categorySet: true})
+  }
+
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -202,11 +227,12 @@ class App extends React.Component {
             })
           }
         })
+      this.fetchCategories()
     } // end if
   } // end componentDidMount
 
   render() {
-    // console.log('App state', this.state);
+    console.log('App state', this.state);
     return (
       <Router>
         <div className="container">
@@ -231,7 +257,11 @@ class App extends React.Component {
             playAgainApp={this.playAgainApp}
             setTime={this.setTime}
             time={this.state.time}
-            timeSet={this.state.timeSet} />}/>
+            timeSet={this.state.timeSet}
+            categories={this.state.categories}
+            setCategory={this.setCategory}
+            categorySelected={this.state.categorySelected}
+            categorySet={this.state.categorySet} />}/>
           <Route exact path='/scores' render={() => <ScoreBoard />} />
           <Route exact path='/account' render={() => <MyAccount
               handleForm={this.handleForm}

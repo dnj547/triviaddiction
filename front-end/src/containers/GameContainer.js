@@ -1,5 +1,8 @@
 import React from 'react';
-import Questions from '../components/Questions'
+import Questions from '../components/Questions';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 
 // Countdown
@@ -9,11 +12,22 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 };
 // end Countdown
 
-
 export default class GameContainer extends React.Component {
 
   componentDidMount() {
     console.log('GameContainer componentDidMount');
+  }
+
+  createCategoryDropdownItems = () => {
+    // console.log('creating category dropdown items');
+    // console.log(this.props.categories);
+    return this.props.categories.map(category=>{
+      return <Dropdown.Item
+              onClick={(e)=>this.props.setCategory(e)}
+              key={category.id}
+              id={category.id}>{category.name}
+            </Dropdown.Item>
+    })
   }
 
   render() {
@@ -38,15 +52,35 @@ export default class GameContainer extends React.Component {
         :
           <div>
             <p>Hi {this.props.currentUser.username}</p>
-            {this.props.timeSet ?
-              <button className="btn btn-primary" onClick={() => this.props.gameStart()}>Start Game</button>
-              :
               <div>
-                <button className="btn btn-primary" id="15" onClick={(e)=>this.props.setTime(e)}>15 Seconds</button>
-                <button className="btn btn-primary" id="30" onClick={(e)=>this.props.setTime(e)}>30 Seconds</button>
-                <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
+                <div>
+                  Choose a time limit for your game:
+                  <br/>
+                  <button className="btn btn-primary" id="15" onClick={(e)=>this.props.setTime(e)}>15 Seconds</button>
+                  <button className="btn btn-primary" id="30" onClick={(e)=>this.props.setTime(e)}>30 Seconds</button>
+                  <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
+                </div>
+                <br/>
+                <div>
+                  Choose a category:
+                  <br/>
+                  {this.props.categorySelected.name ?
+                    <DropdownButton id="dropdown-basic-button" title={this.props.categorySelected.name} >
+                      {this.createCategoryDropdownItems()}
+                    </DropdownButton>
+                    :
+                    <DropdownButton id="dropdown-basic-button" title="Category" >
+                      {this.createCategoryDropdownItems()}
+                    </DropdownButton>
+                  }
+                </div>
+                <br/>
+                {this.props.timeSet && this.props.categorySet ?
+                  <button className="btn btn-primary" onClick={() => this.props.gameStart()}>Start Game</button>
+                  :
+                  <button className="btn btn-primary" disabled>Start Game</button>
+                }
               </div>
-            }
 
           </div>
         }
