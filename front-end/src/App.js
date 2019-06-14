@@ -24,7 +24,9 @@ class App extends React.Component {
       password: ''
     },
     signUp: true,
-    editingAccount: false
+    editingAccount: false,
+    time: 60,
+    timeSet: false
   }
 
   // HELPER FUNCTIONS
@@ -144,6 +146,13 @@ class App extends React.Component {
     console.log('deleting account');
   }
 
+  setTime = (e) => {
+    console.log('setting time');
+    console.log(e.currentTarget.id);
+    this.setState({time: e.currentTarget.id})
+    this.setState({timeSet: true})
+  }
+
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -196,7 +205,10 @@ class App extends React.Component {
             gameOver={this.state.gameOver}
             gameTimeOver={this.gameTimeOver}
             gameStart={this.gameStart}
-            playAgainApp={this.playAgainApp}/>} />
+            playAgainApp={this.playAgainApp}
+            setTime={this.setTime}
+            time={this.state.time}
+            timeSet={this.state.timeSet} />}/>
           <Route exact path='/scores' render={() => <ScoreBoard />} />
           <Route exact path='/account' render={()=><MyAccount
             currentUser={this.state.currentUser}
