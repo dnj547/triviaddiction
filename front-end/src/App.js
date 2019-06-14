@@ -23,7 +23,8 @@ class App extends React.Component {
       username: '',
       password: ''
     },
-    signUp: true
+    signUp: true,
+    editingAccount: false
   }
 
   // HELPER FUNCTIONS
@@ -129,6 +130,16 @@ class App extends React.Component {
     localStorage.clear()
   }
 
+  editAccount = () => {
+    console.log('editing account');
+    this.setState({editingAccount: true})
+  }
+
+  doneEditingAccount = () => {
+    console.log('done editing account');
+    this.setState({editingAccount: false})
+  }
+
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -163,7 +174,9 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          <MyNavBar loggedIn={this.state.loggedIn} playGame={this.playGame}/>
+          <MyNavBar
+            loggedIn={this.state.loggedIn}
+            playGame={this.playGame}/>
           <Route exact path='/' render={() => <HomePageContainer
             currentUser={this.state.currentUser}
             signUpLogIn={this.signUpLogIn}
@@ -183,7 +196,10 @@ class App extends React.Component {
           <Route exact path='/scores' render={() => <ScoreBoard />} />
           <Route exact path='/account' render={()=><MyAccount
             currentUser={this.state.currentUser}
-            signOut={this.signOut}/>} />
+            signOut={this.signOut}
+            editAccount={this.editAccount}
+            editingAccount={this.state.editingAccount}
+            doneEditingAccount={this.doneEditingAccount} />} />
         </div>
       </Router>
     );
