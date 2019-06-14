@@ -9,7 +9,7 @@ class Score < ApplicationRecord
     scores = Hash.new{|hash, key| hash[key] = []}
 
     sorted_score.map do |score|
-      scores[score.user.username].push(score)
+      scores[score.user_id].push(score)
     end
 
     return scores

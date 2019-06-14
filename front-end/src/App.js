@@ -159,6 +159,7 @@ class App extends React.Component {
   homePageOrGameCont = () => {
     if (!this.state.loggedIn) {
       return <HomePageContainer
+        currentUser={this.state.currentUser}
         signUpLogIn={this.signUpLogIn}
         signUp={this.state.signUp}
         handleForm={this.handleForm}

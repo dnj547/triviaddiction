@@ -1,6 +1,8 @@
 class Api::V1::ScoresController < ApplicationController
   def index
-    @scores = Score.player_scores
+    # sort highest score by most recent in descending order
+    @scores = Score.all.sort_by {|score| score.created_at}.reverse
+    
     render json: @scores
   end
 
