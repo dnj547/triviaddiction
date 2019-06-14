@@ -3,7 +3,7 @@ import Question from './Question'
 import Scores from '../components/Scores'
 import Ending from '../components/Ending'
 
-const API = 'https://opentdb.com/api.php?amount=10'
+const API = 'https://opentdb.com/api.php?amount=50'
 
 
 export default class Questions extends React.Component {

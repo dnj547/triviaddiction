@@ -4,6 +4,7 @@ body {
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #212121;
 }
 
 code {
@@ -13,10 +14,58 @@ code {
 
 /* Custom CSS */
 
+/*
+
+Main Colors:
+
+teal: #508688
+pink: #FBA9A7
+light-blue: #D1EFFE
+brown: #6A3701
+black: #212121
+
+ */
+
 h1, h2, h3, h4, h5 {
   font-family: 'Baloo', sans-sans-serif;
 }
 
+.bold-it {
+  font-weight: bold;
+}
+
 .pointer {
   cursor: pointer;
+}
+
+.brown-shadow {
+  box-shadow: 0 1rem 3rem rgba(106,55,1)!important;
+}
+
+.brown-bg {
+  background: #6A3701;
+  opacity: 0.8;
+}
+
+.brown-bg:hover {
+  transition-timing-function: ease-in-out;
+  transition: 0.15s;
+  opacity: 1
+}
+
+.teal-bg {
+  background: #508688
+}
+
+.pink-bg {
+  background: #FBA9A7
+}
+
+.blue-border {
+  border: 4px solid #D1EFFE;
+  list-group-style: none;
+}
+
+.question-rounded {
+  border-radius: 2em;
 }

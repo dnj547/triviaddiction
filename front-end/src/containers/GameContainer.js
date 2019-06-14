@@ -47,6 +47,7 @@ export default class GameContainer extends React.Component {
                 <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
               </div>
             }
+
           </div>
         }
       </div>
