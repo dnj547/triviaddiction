@@ -20,13 +20,13 @@ export default class GameContainer extends React.Component {
     console.log('GameContainer props', this.props);
     console.log('');
     return (
-      <div>
+      <div className="container">
         {this.props.gameStarted ?
           <div>
             <Countdown
               renderer={renderer}
               onComplete={() => this.props.gameTimeOver()}
-              date={Date.now() + 5000} />
+              date={Date.now() + 50000} />
             <Questions
               currentUser={this.props.currentUser}
               gameStarted={this.props.gameStarted}
@@ -38,7 +38,7 @@ export default class GameContainer extends React.Component {
         :
           <div>
             <p>Hi {this.props.currentUser.username}</p>
-            <button onClick={() => this.props.gameStart()}>Start Game</button>
+            <button className="btn btn-primary" onClick={() => this.props.gameStart()}>Start Game</button>
           </div>
         }
       </div>

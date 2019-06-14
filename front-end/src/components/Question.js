@@ -33,6 +33,7 @@ export default class Question extends React.Component {
     })
     // this.props.removeQuestionAnswered(event)
   }
+
   componentDidMount() {
     // new array to house all answers
     const answers = [...this.props.question.incorrect_answers, this.props.question.correct_answer]
@@ -60,22 +61,33 @@ export default class Question extends React.Component {
 
     const displayShuffleAnswers = this.state.answers.map(answer => {
       return (
-        <div
+        <li
+          className="list-group-item list-group-item-action pointer"
           id={answer}
           key={answer}
           data-question={this.props.question.question}>
           {answer}
-        </div>
+        </li>
       )
     })
 
     return (
-      <div>
-        <h2>{entities.decode(this.props.question.question)}</h2>
-        <div onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
-          {displayShuffleAnswers}
+      <div className="card text-center">
+        <h2 className="card-header">{entities.decode(this.props.question.question)}</h2>
+        <div className="card-body">
+          <ul
+            className="list-group list-group-flush"
+            onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
+            {displayShuffleAnswers}
+          </ul>
+
+          {this.state.answered ? <button
+            className="btn btn-primary"
+            onClick={(e)=>this.props.removeQuestionAnswered(e)}
+            data-question={this.props.question.question}>
+              Next Question
+            </button> : null}
         </div>
-        {this.state.answered ? <button onClick={(e)=>this.props.removeQuestionAnswered(e)} data-question={this.props.question.question}>Next Question</button> : null}
       </div>
     )
   }
