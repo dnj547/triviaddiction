@@ -31,6 +31,11 @@ class UsersController < ApplicationController
     render json: logged_in_user
   end
 
+  def delete
+    logged_in_user.destroy
+    render json: { message: "Successfully deleted" }
+  end
+
   private
 
   def user_params
