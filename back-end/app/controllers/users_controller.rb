@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     is_valid = user.valid?
 
     if is_valid
-      render json: { token: encode_token(user) }
+      render json: { token: encode_token(user), id: user.id, username: user.username }
     else
       render json: { error: "Username already taken" }
     end

@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username
+  attributes :id, :username, :high_score
 
   # show only the scores value sorted by recency
   has_many :scores do

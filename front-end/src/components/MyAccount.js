@@ -26,7 +26,7 @@ export default class MyAccount extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.props.currentUser.scores.map((score, index) => {
+                {this.props.currentUser.scores.slice(0,10).map((score, index) => {
                   return <tr key={index}>
                     <td>{moment(score.created_at).fromNow()}</td>
                     <td>{score.score}</td>
@@ -38,10 +38,11 @@ export default class MyAccount extends React.Component {
           </div>
 
           <div className="col-sm-4">
-            <h4>Highest Score</h4>
-            <p>Test</p>
+            <h4 className="teal-bg-only p-2 mb-4">Highest Score</h4>
+            <h4>{this.props.currentUser.highScore}</h4>
             <br /><br />
 
+            <h4 className="teal-bg-only p-2 mb-4">User Settings</h4>
             {this.props.editingAccount ?
               <form
                 className="form-group"
