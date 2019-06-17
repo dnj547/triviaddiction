@@ -12,9 +12,6 @@ const CATEGORIES_API = 'https://opentdb.com/api_category.php'
 class App extends React.Component {
   state = {
     loggedIn: false,
-    gameStarted: false,
-    gameOver: false,
-    playClicked: false,
     currentUser: {
       id: '',
       username: '',
@@ -25,11 +22,7 @@ class App extends React.Component {
       password: ''
     },
     editingAccount: false,
-    time: 60,
-    timeSet: false,
-    categories: [],
-    categorySelected: {},
-    errorMessage: ''
+    categories: []
   }
 
   // HELPER FUNCTIONS
@@ -55,10 +48,10 @@ class App extends React.Component {
     })
   }
 
-  gameTimeOver = () => {
-    console.log('game is over');
-    this.setState({ gameOver: true})
-  }
+  // gameTimeOver = () => {
+  //   console.log('game is over');
+  //   this.setState({ gameOver: true})
+  // }
 
   logIn = (event) => {
     event.preventDefault()
@@ -102,37 +95,37 @@ class App extends React.Component {
     } // end if
   } // end logIn
 
-  playGame = () => {
-    console.log('playing game');
-    this.setState({playClicked: true})
-  }
+  // playGame = () => {
+  //   console.log('playing game');
+  //   this.setState({playClicked: true})
+  // }
 
-  gameStart = () => {
-    console.log('game is starting');
-    this.setState({gameStarted: true})
-  }
+  // gameStart = () => {
+  //   console.log('game is starting');
+  //   this.setState({gameStarted: true})
+  // }
 
-  playAgainApp = (event) => {
-    console.log('playing game again');
-    fetch(API + 'api/v1/scores', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        user_id: event.currentTarget.dataset.user,
-        score: parseInt(event.currentTarget.dataset.score)
-      })
-    })
-      .then(r => r.json())
-      .then(() => {
-        this.setState({
-          gameStarted: false,
-          gameOver: false
-        })
-      })
-  }
+  // playAgainApp = (event) => {
+  //   console.log('playing game again');
+  //   fetch(API + 'api/v1/scores', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       user_id: event.currentTarget.dataset.user,
+  //       score: parseInt(event.currentTarget.dataset.score)
+  //     })
+  //   })
+  //     .then(r => r.json())
+  //     .then(() => {
+  //       this.setState({
+  //         gameStarted: false,
+  //         gameOver: false
+  //       })
+  //     })
+  // }
 
   signOut = () => {
     console.log('signing out');
@@ -188,22 +181,22 @@ class App extends React.Component {
     window.location.href = "/"
   }
 
-  setTime = (e) => {
-    console.log('setting time');
-    console.log(e.currentTarget.id);
-    this.setState({time: e.currentTarget.id})
-    this.setState({timeSet: true})
-  }
+  // setTime = (e) => {
+  //   console.log('setting time');
+  //   console.log(e.currentTarget.id);
+  //   this.setState({time: e.currentTarget.id})
+  //   this.setState({timeSet: true})
+  // }
 
-  setCategory = (e) => {
-    console.log('setting category');
-    // console.log(e.currentTarget.id);
-    let categorySelected = this.state.categories.filter(category=>{
-      return category.id === parseInt(e.currentTarget.id, 10)
-    })
-    this.setState({categorySelected: categorySelected[0]})
-    this.setState({categorySet: true})
-  }
+  // setCategory = (e) => {
+  //   console.log('setting category');
+  //   // console.log(e.currentTarget.id);
+  //   let categorySelected = this.state.categories.filter(category=>{
+  //     return category.id === parseInt(e.currentTarget.id, 10)
+  //   })
+  //   this.setState({categorySelected: categorySelected[0]})
+  //   this.setState({categorySet: true})
+  // }
 
   // end HELPER FUNCTIONS
 
@@ -240,31 +233,19 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <MyNavBar
-            loggedIn={this.state.loggedIn}
-            playGame={this.playGame}/>
+            loggedIn={this.state.loggedIn}/>
           <div className="mt-4 text-center">
-            <Route exact path='/' render={() => <HomePageContainer
-              currentUser={this.state.currentUser}
-              handleForm={this.handleForm}
-              logIn={this.logIn}
-              errorMessage={this.state.errorMessage}
-              userForm={this.state.userForm}
-              playGame={this.playGame}
-              loggedIn={this.state.loggedIn}/>} />
-            <Route exact path='/play' render={() => <GameContainer
-              currentUser={this.state.currentUser}
-              gameStarted={this.state.gameStarted}
-              gameOver={this.state.gameOver}
-              gameTimeOver={this.gameTimeOver}
-              gameStart={this.gameStart}
-              playAgainApp={this.playAgainApp}
-              setTime={this.setTime}
-              time={this.state.time}
-              timeSet={this.state.timeSet}
-              categories={this.state.categories}
-              setCategory={this.setCategory}
-              categorySelected={this.state.categorySelected}
-              categorySet={this.state.categorySet} />}/>
+          <Route exact path='/' render={() => <HomePageContainer
+            currentUser={this.state.currentUser}
+            signUpLogIn={this.signUpLogIn}
+            signUp={this.state.signUp}
+            handleForm={this.handleForm}
+            logIn={this.logIn}
+            userForm={this.state.userForm}
+            loggedIn={this.state.loggedIn}/>} />
+          <Route exact path='/play' render={() => <GameContainer
+            currentUser={this.state.currentUser}
+            categories={this.state.categories} />}/>
             <Route exact path='/scores' render={() => <ScoreBoardContainer />} />
             <Route exact path='/account' render={() => <MyAccount
                 loggedIn={this.state.loggedIn}
