@@ -18,7 +18,8 @@ class App extends React.Component {
     currentUser: {
       id: '',
       username: '',
-      scores: []
+      scores: [],
+      highScore: ''
     },
     userForm: {
       username: '',
@@ -242,7 +243,8 @@ class App extends React.Component {
               currentUser: {
                 id: data.id,
                 username: data.username,
-                scores: data.scores
+                scores: data.scores,
+                highScore: data.high_score
               }
             })
           }
