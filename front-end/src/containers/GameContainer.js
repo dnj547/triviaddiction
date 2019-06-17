@@ -33,14 +33,6 @@ export default class GameContainer extends React.Component {
     })
   }
 
-  handleChange = (event) => {
-    debugger
-    console.log(event)
-    this.setState({
-      timeNow: 2
-    })
-  }
-
   render() {
     console.log('GameContainer props', this.props);
     console.log('');

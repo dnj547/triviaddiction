@@ -104,12 +104,20 @@ class App extends React.Component {
 
   playGame = () => {
     console.log('playing game');
-    this.setState({playClicked: true})
+    this.setState({
+      playClicked: true,
+      gameStarted: false
+    })
   }
 
   gameStart = () => {
     console.log('game is starting');
     this.setState({gameStarted: true})
+  }
+
+  gameRestart = () => {
+    console.log('game is starting');
+    this.setState({gameStarted: false})
   }
 
   playAgainApp = (event) => {
@@ -240,6 +248,7 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <MyNavBar
+            gameRestart={this.gameRestart}
             loggedIn={this.state.loggedIn}
             playGame={this.playGame}/>
           <div className="mt-4 text-center">
