@@ -14,11 +14,11 @@ export default class ScoreBoard extends React.Component {
   }
 
   showScores = () => {
-    fetch(ScoreApi)
-      .then(r => r.json())
-      .then(scores => {
-        this.setState({ scores })
-      })
+    // fetch(ScoreApi)
+    //   .then(r => r.json())
+    //   .then(scores => {
+    //     this.setState({ scores })
+    //   })
     return (
       <table>
         <thead>

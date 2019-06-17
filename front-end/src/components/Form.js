@@ -3,9 +3,7 @@ import React from "react"
 export default class Form extends React.Component {
   render() {
     return (
-      <form
-        data-type={this.props.signUp ? "signup" : "login" } 
-        onSubmit={this.props.logIn}>
+      <form>
         <label>
           Username:
           <input
@@ -24,19 +22,16 @@ export default class Form extends React.Component {
             name="password" />
         </label>
         <br/>
-        <input type="submit" value={this.props.signUp ? "Sign Up" : "Log In"} />
-
-        {
-          this.props.signUp ?
-            <div onClick={this.props.signUpLogIn} value="Log In">
-              Log In
-            </div>
-        :
-
-            <div onClick={this.props.signUpLogIn} value="Sign Up">
-              Sign Up
-            </div>
-        }
+        <input
+          onClick={this.props.logIn}
+          type="submit"
+          data-type="signup"
+          value="Sign Up" />
+        <input
+          onClick={this.props.logIn}
+          type="submit"
+          data-type="login"
+          value="Log In" />
       </form>
     )
   }
