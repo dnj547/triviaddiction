@@ -13,6 +13,7 @@ export default class MyAccount extends React.Component {
     return (
       <div>
         <h1>{this.props.currentUser.username.toUpperCase()}</h1>
+        {this.props.currentUser.scores.map(score => <div>{score}</div>)}
         <Link to='/'>
           <button onClick={this.props.signOut}>
             Sign Out

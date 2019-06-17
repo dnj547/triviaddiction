@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/profile', to: "users#profile"
   patch '/edit', to: "users#edit"
   delete '/delete', to: "users#delete"
-  # get '/api/v1/users', to: "users#index"
+  get '/api/v1/users', to: "users#index"
 
   namespace :api do
     namespace :v1 do

@@ -222,9 +222,9 @@ class App extends React.Component {
             this.setState({
               loggedIn: true,
               currentUser: {
-                ...this.state.currentUser,
                 id: data.id,
-                username: data.username
+                username: data.username,
+                scores: data.scores
               }
             })
           }
