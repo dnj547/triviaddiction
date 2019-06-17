@@ -69,8 +69,17 @@ h1, h2, h3, h4, h5 {
 }
 
 .pink-bg {
-  background: #FBA9A7
+  background: #FBA9A7;
+  color: #fff;
+  font-weight: bold;
+  /* opacity: 1 */
 }
+.pink-bg:hover {
+  transition-timing-function: ease-in-out;
+  transition: 0.15s;
+  /* opacity: 0.8 */
+}
+
 
 .blue-border {
   border: 4px solid #D1EFFE;

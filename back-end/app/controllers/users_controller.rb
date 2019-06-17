@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     # params: { username: '', password: '' }
-
+    # byebug
     user = User.create(user_params)
 
     is_valid = user.valid?
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if is_valid
       render json: { token: encode_token(user) }
     else
-      render json: { error: user.errors.full_message }
+      render json: { error: "Username already taken" }
     end
   end
 
