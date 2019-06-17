@@ -243,8 +243,7 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <MyNavBar
-            loggedIn={this.state.loggedIn}
-            playGame={this.playGame}/>
+            loggedIn={this.state.loggedIn}/>
           <Route exact path='/' render={() => <HomePageContainer
             currentUser={this.state.currentUser}
             signUpLogIn={this.signUpLogIn}
@@ -252,22 +251,10 @@ class App extends React.Component {
             handleForm={this.handleForm}
             logIn={this.logIn}
             userForm={this.state.userForm}
-            playGame={this.playGame}
             loggedIn={this.state.loggedIn}/>} />
           <Route exact path='/play' render={() => <GameContainer
             currentUser={this.state.currentUser}
-            gameStarted={this.state.gameStarted}
-            gameOver={this.state.gameOver}
-            gameTimeOver={this.gameTimeOver}
-            gameStart={this.gameStart}
-            playAgainApp={this.playAgainApp}
-            setTime={this.setTime}
-            time={this.state.time}
-            timeSet={this.state.timeSet}
-            categories={this.state.categories}
-            setCategory={this.setCategory}
-            categorySelected={this.state.categorySelected}
-            categorySet={this.state.categorySet} />}/>
+            categories={this.state.categories} />}/>
           <Route exact path='/scores' render={() => <ScoreBoard />} />
           <Route exact path='/account' render={() => <MyAccount
               loggedIn={this.state.loggedIn}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownButton, Dropdown, ProgressBar } from 'react-bootstrap';
 import Countdown from 'react-countdown-now'
-import Question from '../components/Question'
+import QuestionsContainer from './QuestionsContainer'
 import Scores from "../components/Scores";
 
 const OUR_API = 'http://localhost:3000/'
@@ -36,13 +36,6 @@ export default class GameContainer extends React.Component {
     })
   }
 
-  setScore = () => {
-    console.log('setting score in game container');
-    let newScore = this.state.score+1
-    console.log('game container new score', newScore);
-    this.setState({score: newScore})
-  }
-
   createCategoryDropdownItems = () => {
     return this.props.categories.map(category=>{
       return <Dropdown.Item
@@ -68,7 +61,7 @@ export default class GameContainer extends React.Component {
     })
   }
 
-  endingScreen = (e) => {
+  endingScreen = () => {
     fetch(OUR_API + 'api/v1/scores', {
         method: "POST",
         headers: {
@@ -80,11 +73,14 @@ export default class GameContainer extends React.Component {
           score: parseInt(this.state.score)
         })
       })
-
-
     this.setState({
       screen: 'ending'
     })
+  }
+
+  setGameScore = (score) => {
+    console.log('setting game score');
+    this.setState({score}, ()=>this.endingScreen())
   }
 
   setTime = (e) => {
@@ -144,16 +140,14 @@ export default class GameContainer extends React.Component {
         <div>
           <Countdown
           renderer={this.renderer}
-          onComplete={() => this.endingScreen()}
+          onComplete={() => this.setGameScore()}
           date={Date.now() + this.state.time*1000} />
-          <div className="text-center">
-            <b>Current Score:</b> {this.state.score}
-          </div>
+
           <div>
             {this.state.questions.length > 0 ?
-              <Question
+              <QuestionsContainer
               questions={this.state.questions}
-              setScore={this.setScore}
+              showEnding={this.showEnding}
               />
               : null
             }
@@ -163,9 +157,8 @@ export default class GameContainer extends React.Component {
     } else if (this.state.screen === 'ending') {
       return (
         <div>
-
           <div>
-            <Scores score={this.props.score}/>
+            <Scores score={this.state.score}/>
             <p></p>
             <button
               data-user={this.props.currentUser.id}
