@@ -26,14 +26,14 @@ export default class Form extends React.Component {
             name="password" />
         <br/>
         <input
-          className="btn btn-primary mr-2"
+          className="btn btn-primary bold-it mr-2"
           onClick={this.props.logIn}
           type="submit"
           data-type="signup"
           value="Sign Up" />
 
         <input
-          className="btn btn-secondary ml-2"
+          className="btn btn-info bold-it ml-2"
           onClick={this.props.logIn}
           type="submit"
           data-type="login"
