@@ -19,7 +19,11 @@ export default class HomePageContainer extends React.Component {
         {this.props.loggedIn ?
           <div>
             <Link to='/play'>
-              <button onClick={this.props.playGame}>Play</button>
+              <button
+                className="btn-lg border-0 pink-bg text-light"
+                onClick={this.props.playGame}>
+                Play
+              </button>
             </Link>
           </div> :
           <Form

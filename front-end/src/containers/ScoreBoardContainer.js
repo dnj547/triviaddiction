@@ -22,10 +22,10 @@ export default class ScoreBoardContainer extends React.Component {
     return (
       <table className="mx-auto table table-hover table-borderless">
         <thead>
-          <tr>
-            <th><h5>Rank</h5></th>
-            <th><h5>Username</h5></th>
-            <th><h5>Score</h5></th>
+          <tr className="pink-bg">
+            <th><h5 className="mb-0">Rank</h5></th>
+            <th><h5 className="mb-0">Username</h5></th>
+            <th><h5 className="mb-0">Score</h5></th>
           </tr>
         </thead>
         <tbody>
