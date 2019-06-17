@@ -134,10 +134,19 @@ class App extends React.Component {
       })
     })
       .then(r => r.json())
-      .then(() => {
+      .then(data => {
+        const newScoreObj = {
+          score: data.score,
+          created_at: data.created_at
+        }
+
         this.setState({
           gameStarted: false,
-          gameOver: false
+          gameOver: false,
+          currentUser: {
+            ...this.state.currentUser,
+            scores: [newScoreObj, ...this.state.currentUser.scores]
+          }
         })
       })
   }
