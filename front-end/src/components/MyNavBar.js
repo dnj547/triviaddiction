@@ -18,8 +18,8 @@ export default class MyNavBar extends React.Component {
             <Link to="/play" className="mr-4">
               <button className="btn text-white teal-bg border-0">New Game</button>
             </Link>
-            <Link to="/scores" className="mr-4 text-dark">High Scores</Link>
-            <Link to="/account" className="mr-2 text-dark">My Account</Link>
+            <Link to="/scores" className="mr-4 text-dark bold-it">High Scores</Link>
+            <Link to="/account" className="mr-2 text-dark bold-it">My Account</Link>
           </Nav> : null}
       </Navbar>
     )
