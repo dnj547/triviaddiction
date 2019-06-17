@@ -3,8 +3,7 @@ import React from 'react';
 // import Scores from '../components/Scores'
 // import Ending from '../components/Ending'
 
-// const API = 'https://opentdb.com/api.php?amount=50'
-// const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=50&category=' //add CATEGORY_ID
+const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=50&category=' //add CATEGORY_ID
 
 export default class Questions extends React.Component {
   //

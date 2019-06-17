@@ -4,7 +4,7 @@ import GameContainer from './containers/GameContainer';
 import HomePageContainer from './containers/HomePageContainer';
 import MyNavBar from './components/MyNavBar'
 import MyAccount from './components/MyAccount'
-import ScoreBoard from './components/ScoreBoard'
+import ScoreBoardContainer from './containers/ScoreBoardContainer'
 
 const API = 'http://localhost:3000/'
 const CATEGORIES_API = 'https://opentdb.com/api_category.php'
@@ -21,13 +21,11 @@ class App extends React.Component {
       username: '',
       password: ''
     },
-    signUp: true,
     editingAccount: false,
     categories: []
   }
 
   // HELPER FUNCTIONS
-
   fetchCategories = () => {
     console.log('fetching categories');
     fetch(CATEGORIES_API)
@@ -38,13 +36,6 @@ class App extends React.Component {
         return categoriesWithManyQuestions.includes(category.id)
       })
       this.setState({categories: filteredCategories})
-    })
-  }
-
-  signUpLogIn = (event) => {
-    event.preventDefault()
-    this.setState({
-      signUp: !this.state.signUp
     })
   }
 
@@ -64,45 +55,44 @@ class App extends React.Component {
 
   logIn = (event) => {
     event.preventDefault()
-    console.log('logging in');
-    fetch(API + event.currentTarget.dataset.type, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.userForm.username,
-        password: this.state.userForm.password
-      })
-    })
-      .then(r => r.json())
-      .then(data => {
-        // checks if token is returned
-        if (!!data.token) {
-          localStorage.setItem('token', data.token)
-        }
-      })
-      .then(() => {
-        // secondary fetch to validate token
-        fetch(API + 'profile', {
-          headers: {
-            "Authorization": localStorage.getItem('token')
-          }
+    console.log('Logging in or signing up');
+    if (this.state.userForm.username === '') {
+      this.setState({ errorMessage: 'Username cannot be blank' })
+    } else {
+      fetch(API + event.currentTarget.dataset.type, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          username: this.state.userForm.username,
+          password: this.state.userForm.password
         })
-          .then(r => r.json())
-          .then(data => {
-            if (data.username === this.state.userForm.username) {
-              this.setState({
-                loggedIn: true,
-                currentUser: {
-                  id: data.id,
-                  username: data.username
-                }
-              })
-            }
-          })
-      }) // end secondary fetch
+      })
+        .then(r => r.json())
+        .then(data => {
+          // checks if token is returned
+          if (!!data.token) {
+            localStorage.setItem('token', data.token)
+
+            this.setState({
+              loggedIn: true,
+              currentUser: {
+                ...this.state.currentUser,
+                id: data.id,
+                username: data.username
+              }
+            })
+          } else {
+            // render errors on page
+            this.setState({
+              errorMessage: data.error
+            })
+          } // end if
+        })
+      // end fetch
+    } // end if
   } // end logIn
 
   // playGame = () => {
@@ -145,7 +135,7 @@ class App extends React.Component {
 
   editAccount = () => {
     console.log('editing account');
-    this.setState({editingAccount: true})
+    this.setState({editingAccount: !this.state.editingAccount})
   }
 
   doneEditingAccount = (event) => {
@@ -226,9 +216,9 @@ class App extends React.Component {
             this.setState({
               loggedIn: true,
               currentUser: {
-                ...this.state.currentUser,
                 id: data.id,
-                username: data.username
+                username: data.username,
+                scores: data.scores
               }
             })
           }
@@ -244,6 +234,7 @@ class App extends React.Component {
         <div className="container">
           <MyNavBar
             loggedIn={this.state.loggedIn}/>
+          <div className="mt-4 text-center">
           <Route exact path='/' render={() => <HomePageContainer
             currentUser={this.state.currentUser}
             signUpLogIn={this.signUpLogIn}
@@ -255,17 +246,18 @@ class App extends React.Component {
           <Route exact path='/play' render={() => <GameContainer
             currentUser={this.state.currentUser}
             categories={this.state.categories} />}/>
-          <Route exact path='/scores' render={() => <ScoreBoard />} />
-          <Route exact path='/account' render={() => <MyAccount
-              loggedIn={this.state.loggedIn}
-              handleForm={this.handleForm}
-              userForm={this.state.userForm}
-              currentUser={this.state.currentUser}
-              signOut={this.signOut}
-              editAccount={this.editAccount}
-              editingAccount={this.state.editingAccount}
-              doneEditingAccount={this.doneEditingAccount}
-              deleteAccount={this.deleteAccount} />} />
+            <Route exact path='/scores' render={() => <ScoreBoardContainer />} />
+            <Route exact path='/account' render={() => <MyAccount
+                loggedIn={this.state.loggedIn}
+                handleForm={this.handleForm}
+                userForm={this.state.userForm}
+                currentUser={this.state.currentUser}
+                signOut={this.signOut}
+                editAccount={this.editAccount}
+                editingAccount={this.state.editingAccount}
+                doneEditingAccount={this.doneEditingAccount}
+                deleteAccount={this.deleteAccount} />} />
+          </div>
         </div>
       </Router>
     );

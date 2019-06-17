@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../components/Form';
-import ScoreBoard from '../components/ScoreBoard';
+import ScoreBoardContainer from './ScoreBoardContainer';
 import {Link} from 'react-router-dom';
 
 
@@ -14,24 +14,24 @@ export default class HomePageContainer extends React.Component {
     // console.log('HomePageContainer props', this.props);
     return (
       <div>
-        <h1>Triviaddiction</h1>
         <h2>Rules:</h2>
         <p>Answer as many questions as you can before the timer runs out!</p>
         {this.props.loggedIn ?
           <div>
             <Link to='/play'>
-              <button onClick={this.props.playGame}>Play</button>
+              <button
+                className="btn-lg border-0 pink-bg text-light"
+                onClick={this.props.playGame}>
+                Play
+              </button>
             </Link>
           </div> :
           <Form
-            signUpLogIn={this.props.signUpLogIn}
-            signUp={this.props.signUp}
+            errorMessage={this.props.errorMessage}
             logIn={this.props.logIn}
             handleForm={this.props.handleForm}
             userForm={this.props.userForm} />
         }
-
-        <ScoreBoard currentUser={this.props.currentUser} />
       </div>
     )
   }
