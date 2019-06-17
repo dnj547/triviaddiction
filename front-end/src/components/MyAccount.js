@@ -38,6 +38,10 @@ export default class MyAccount extends React.Component {
           </div>
 
           <div className="col-sm-4">
+            <h4>Highest Score</h4>
+            <p>Test</p>
+            <br /><br />
+
             {this.props.editingAccount ?
               <form
                 className="form-group"
