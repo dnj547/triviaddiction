@@ -16,7 +16,7 @@ export default class MyNavBar extends React.Component {
         {this.props.loggedIn ?
           <Nav className="d-block">
             <Link to="/play" className="mr-4">
-              <button className="btn text-white teal-bg border-0">New Game</button>
+              <button onClick={this.props.gameRestart} className="btn text-white teal-bg border-0">New Game</button>
             </Link>
             <Link to="/scores" className="mr-4 text-dark bold-it">High Scores</Link>
             <Link to="/account" className="mr-2 text-dark bold-it">My Account</Link>
