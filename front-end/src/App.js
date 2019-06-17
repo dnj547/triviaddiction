@@ -12,9 +12,6 @@ const CATEGORIES_API = 'https://opentdb.com/api_category.php'
 class App extends React.Component {
   state = {
     loggedIn: false,
-    gameStarted: false,
-    gameOver: false,
-    playClicked: false,
     currentUser: {
       id: '',
       username: '',
@@ -26,10 +23,7 @@ class App extends React.Component {
     },
     signUp: true,
     editingAccount: false,
-    time: 60,
-    timeSet: false,
-    categories: [],
-    categorySelected: {}
+    categories: []
   }
 
   // HELPER FUNCTIONS
@@ -63,10 +57,10 @@ class App extends React.Component {
     })
   }
 
-  gameTimeOver = () => {
-    console.log('game is over');
-    this.setState({ gameOver: true})
-  }
+  // gameTimeOver = () => {
+  //   console.log('game is over');
+  //   this.setState({ gameOver: true})
+  // }
 
   logIn = (event) => {
     event.preventDefault()
@@ -111,37 +105,37 @@ class App extends React.Component {
       }) // end secondary fetch
   } // end logIn
 
-  playGame = () => {
-    console.log('playing game');
-    this.setState({playClicked: true})
-  }
+  // playGame = () => {
+  //   console.log('playing game');
+  //   this.setState({playClicked: true})
+  // }
 
-  gameStart = () => {
-    console.log('game is starting');
-    this.setState({gameStarted: true})
-  }
+  // gameStart = () => {
+  //   console.log('game is starting');
+  //   this.setState({gameStarted: true})
+  // }
 
-  playAgainApp = (event) => {
-    console.log('playing game again');
-    fetch(API + 'api/v1/scores', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        user_id: event.currentTarget.dataset.user,
-        score: parseInt(event.currentTarget.dataset.score)
-      })
-    })
-      .then(r => r.json())
-      .then(() => {
-        this.setState({
-          gameStarted: false,
-          gameOver: false
-        })
-      })
-  }
+  // playAgainApp = (event) => {
+  //   console.log('playing game again');
+  //   fetch(API + 'api/v1/scores', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       user_id: event.currentTarget.dataset.user,
+  //       score: parseInt(event.currentTarget.dataset.score)
+  //     })
+  //   })
+  //     .then(r => r.json())
+  //     .then(() => {
+  //       this.setState({
+  //         gameStarted: false,
+  //         gameOver: false
+  //       })
+  //     })
+  // }
 
   signOut = () => {
     console.log('signing out');
@@ -197,22 +191,22 @@ class App extends React.Component {
     window.location.href = "/"
   }
 
-  setTime = (e) => {
-    console.log('setting time');
-    console.log(e.currentTarget.id);
-    this.setState({time: e.currentTarget.id})
-    this.setState({timeSet: true})
-  }
+  // setTime = (e) => {
+  //   console.log('setting time');
+  //   console.log(e.currentTarget.id);
+  //   this.setState({time: e.currentTarget.id})
+  //   this.setState({timeSet: true})
+  // }
 
-  setCategory = (e) => {
-    console.log('setting category');
-    // console.log(e.currentTarget.id);
-    let categorySelected = this.state.categories.filter(category=>{
-      return category.id === parseInt(e.currentTarget.id, 10)
-    })
-    this.setState({categorySelected: categorySelected[0]})
-    this.setState({categorySet: true})
-  }
+  // setCategory = (e) => {
+  //   console.log('setting category');
+  //   // console.log(e.currentTarget.id);
+  //   let categorySelected = this.state.categories.filter(category=>{
+  //     return category.id === parseInt(e.currentTarget.id, 10)
+  //   })
+  //   this.setState({categorySelected: categorySelected[0]})
+  //   this.setState({categorySet: true})
+  // }
 
   // end HELPER FUNCTIONS
 

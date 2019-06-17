@@ -6,42 +6,54 @@ const entities = new Entities();
 
 export default class Question extends React.Component {
   state = {
+    question: {},
     answered: false,
     answers: [],
     correct_answer: ''
   }
 
-  selectAnswer = (event) => {
-    // debugger
+  selectAnswer = (e) => {
     // correct answer is here: this.props.question.correct_answer
-    // console.log(event.target.id)
+    // console.log(e.target.id)
 
     // check if current answer is correct
-    if (event.target.id === this.state.correct_answer) {
+    if (e.target.id === this.state.correct_answer) {
       // if true turn background green
-      event.target.style.background = "#5CB75C"
-      event.target.style.color = "#fff"
+      e.target.style.background = "#5CB75C"
+      e.target.style.color = "#fff"
 
-      this.props.updateCorrectAnswers(event)
+      this.props.setScore()
       // only one click
       this.setState({
         answered: true
       })
-    } else if (event.target.id !== this.state.correct_answer && !!event.target.id ){
+    } else if (e.target.id !== this.state.correct_answer && !!e.target.id ){
       // else background red
-      event.target.style.background = "#FC4A45"
-      event.target.style.color = "#212121"
+      e.target.style.background = "#FC4A45"
+      e.target.style.color = "#212121"
       // only one click
       this.setState({
         answered: true
       })
     }
-    // this.props.removeQuestionAnswered(event)
   }
 
   componentDidMount() {
+    console.log('Question component did mount');
+    console.log('Question component state', this.state);
     // new array to house all answers
-    const answers = [...this.props.question.incorrect_answers, this.props.question.correct_answer]
+    const questionsArray = this.props.questions
+
+    let question = questionsArray[Math.floor(Math.random()*questionsArray.length)]
+
+    this.setState({
+      question
+    }, ()=>this.setStates())
+
+  }
+
+  setStates = () => {
+    const answers = [...this.state.question.incorrect_answers, this.state.question.correct_answer]
 
     // decode answers in case they're regexed
     const decodedAnswers = answers.map(answer => entities.decode(answer))
@@ -50,50 +62,57 @@ export default class Question extends React.Component {
     // shuffle answers so correct answer is not always the last one
 
     // decode correct answer
-    const correct_answer = entities.decode(this.props.question.correct_answer)
+    const correct_answer = entities.decode(this.state.question.correct_answer)
 
     this.setState({
+      answered: false,
       answers: shuffleAnswers,
       correct_answer: correct_answer
     })
-
   }
 
-  render() {
+  nextQuestion = () => {
+    const questionsArray = this.props.questions
+    let question = questionsArray[Math.floor(Math.random()*questionsArray.length)]
+    this.setState({
+      question
+    }, ()=>this.setStates())
+  }
 
-    const displayShuffleAnswers = this.state.answers.map(answer => {
+  showAnswers = () => {
+    return this.state.answers.map(answer=>{
       return (
         <li
           className="list-group-item pointer rounded-pill blue-border mb-4"
           id={answer}
           key={answer}
-          data-question={this.props.question.question}>
+          data-question={this.state.question.question}>
           {answer}
         </li>
       )
     })
+  }
 
+  render() {
     return (
       <div className="row justify-content-center">
-
         <div className="col text-center brown-shadow border-0 p-4 m-4 question-rounded">
-          <h2 className="p-4 m-4 bg-white">{entities.decode(this.props.question.question)}</h2>
-
+          <h2 className="p-4 m-4 bg-white">{entities.decode(this.state.question.question)}</h2>
           <div>
             <ul
               className="list-group"
-              onClick={this.state.answered ? null : event => this.selectAnswer(event)}>
+              onClick={this.state.answered ? null : e => this.selectAnswer(e)}>
               <div className="row justify-content-center">
                 <div className="col-sm-8">
-                  {displayShuffleAnswers}
+                  {this.showAnswers()}
                 </div>
               </div>
             </ul>
 
             {this.state.answered ? <button
               className="btn brown-bg text-light bold-it"
-              onClick={(e)=>this.props.removeQuestionAnswered(e)}
-              data-question={this.props.question.question}>
+              onClick={(e)=>this.nextQuestion()}
+              data-question={this.state.question.question}>
                 Next Question
               </button> : null}
           </div>

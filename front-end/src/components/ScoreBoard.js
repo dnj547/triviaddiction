@@ -1,6 +1,7 @@
 import React from "react"
 
 const ScoreApi = 'http://localhost:3000/api/v1/scores'
+
 export default class ScoreBoard extends React.Component {
   state = {
     scores: []
@@ -14,11 +15,6 @@ export default class ScoreBoard extends React.Component {
   }
 
   showScores = () => {
-    fetch(ScoreApi)
-      .then(r => r.json())
-      .then(scores => {
-        this.setState({ scores })
-      })
     return (
       <table>
         <thead>
