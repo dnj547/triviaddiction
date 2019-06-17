@@ -27,6 +27,7 @@ export default class HomePageContainer extends React.Component {
             </Link>
           </div> :
           <Form
+            errorMessage={this.props.errorMessage}
             logIn={this.props.logIn}
             handleForm={this.props.handleForm}
             userForm={this.props.userForm} />

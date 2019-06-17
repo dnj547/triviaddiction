@@ -28,7 +28,8 @@ class App extends React.Component {
     time: 60,
     timeSet: false,
     categories: [],
-    categorySelected: {}
+    categorySelected: {},
+    errorMessage: ''
   }
 
   // HELPER FUNCTIONS
@@ -61,45 +62,35 @@ class App extends React.Component {
 
   logIn = (event) => {
     event.preventDefault()
-    console.log('logging in');
-    fetch(API + event.currentTarget.dataset.type, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.userForm.username,
-        password: this.state.userForm.password
+    console.log('Logging in or signing up');
+    if (this.state.userForm.username === '' || this.state.userForm.password === '') {
+
+    } else {
+      fetch(API + event.currentTarget.dataset.type, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          username: this.state.userForm.username,
+          password: this.state.userForm.password
+        })
       })
-    })
-      .then(r => r.json())
-      .then(data => {
-        // checks if token is returned
-        if (!!data.token) {
-          localStorage.setItem('token', data.token)
-        }
-      })
-      .then(() => {
-        // secondary fetch to validate token
-        fetch(API + 'profile', {
-          headers: {
-            "Authorization": localStorage.getItem('token')
+        .then(r => r.json())
+        .then(data => {
+          // checks if token is returned
+          if (!!data.token) {
+            localStorage.setItem('token', data.token)
+          } else {
+            // render errors on page
+            this.setState({
+              errorMessage: data.error
+            })
           }
         })
-          .then(r => r.json())
-          .then(data => {
-            if (data.username === this.state.userForm.username) {
-              this.setState({
-                loggedIn: true,
-                currentUser: {
-                  id: data.id,
-                  username: data.username
-                }
-              })
-            }
-          })
-      }) // end secondary fetch
+      // end fetch
+    } // end if
   } // end logIn
 
   playGame = () => {
@@ -247,6 +238,7 @@ class App extends React.Component {
               currentUser={this.state.currentUser}
               handleForm={this.handleForm}
               logIn={this.logIn}
+              errorMessage={this.state.errorMessage}
               userForm={this.state.userForm}
               playGame={this.playGame}
               loggedIn={this.state.loggedIn}/>} />

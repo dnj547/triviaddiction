@@ -4,6 +4,7 @@ export default class Form extends React.Component {
   render() {
     return (
       <form className="form-group">
+        {this.props.errorMessage ? <div className="alert alert-danger col-sm-6 mx-auto" role="alert">{this.props.errorMessage}</div> : null}
         <label>
           Username
         </label>
