@@ -63,8 +63,8 @@ class App extends React.Component {
   logIn = (event) => {
     event.preventDefault()
     console.log('Logging in or signing up');
-    if (this.state.userForm.username === '' || this.state.userForm.password === '') {
-
+    if (this.state.userForm.username === '') {
+      this.setState({ errorMessage: 'Username cannot be blank' })
     } else {
       fetch(API + event.currentTarget.dataset.type, {
         method: "POST",
