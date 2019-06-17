@@ -86,6 +86,7 @@ class App extends React.Component {
             this.setState({
               loggedIn: true,
               currentUser: {
+                ...this.state.currentUser,
                 id: data.id,
                 username: data.username
               }
@@ -141,7 +142,7 @@ class App extends React.Component {
 
   editAccount = () => {
     console.log('editing account');
-    this.setState({editingAccount: true})
+    this.setState({editingAccount: !this.state.editingAccount})
   }
 
   doneEditingAccount = (event) => {
@@ -264,7 +265,7 @@ class App extends React.Component {
               setCategory={this.setCategory}
               categorySelected={this.state.categorySelected}
               categorySet={this.state.categorySet} />}/>
-            <Route exact path='/scores' render={() => <ScoreBoardContainer currentUser={this.state.currentUser} />} />
+            <Route exact path='/scores' render={() => <ScoreBoardContainer />} />
             <Route exact path='/account' render={() => <MyAccount
                 loggedIn={this.state.loggedIn}
                 handleForm={this.handleForm}

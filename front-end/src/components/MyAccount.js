@@ -18,11 +18,6 @@ export default class MyAccount extends React.Component {
         <div className="row">
 
           <div className="col-sm-4">
-            <Link to='/'>
-              <button onClick={this.props.signOut}>
-                Sign Out
-              </button>
-            </Link>
             {this.props.editingAccount ?
               <form onSubmit={event => this.props.doneEditingAccount(event)}>
                 <label>
@@ -45,16 +40,31 @@ export default class MyAccount extends React.Component {
                 </label>
                 <br/>
                 <input type="submit" value="Submit" />
+                <Link onClick={this.props.editAccount}>Cancel</Link>
               </form>
               :
-              <button onClick={this.props.editAccount}>
+              <button
+                className="btn btn-primary"
+                onClick={this.props.editAccount}>
                 Edit Account
               </button>
             }
-            <br/>
-            <button id={this.props.currentUser.id} onClick={event => {if (window.confirm('Are you sure you wish to delete your account?')) this.props.deleteAccount(event)}}>
+            <br /><br />
+            <Link to='/'>
+              <button
+                className="btn-sm btn-danger"
+                onClick={this.props.signOut}>
+                Log Out
+              </button>
+            </Link>
+            <br /><br />
+            <Link
+              to="/"
+              className="text-danger"
+              id={this.props.currentUser.id}
+              onClick={event => {if (window.confirm('Are you sure you wish to delete your account?')) this.props.deleteAccount(event)}}>
               Delete Account
-            </button>
+            </Link>
           </div>
 
           <div className="col-sm-8">
