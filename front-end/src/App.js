@@ -48,11 +48,6 @@ class App extends React.Component {
     })
   }
 
-  // gameTimeOver = () => {
-  //   console.log('game is over');
-  //   this.setState({ gameOver: true})
-  // }
-
   logIn = (event) => {
     event.preventDefault()
     console.log('Logging in or signing up');
@@ -94,38 +89,6 @@ class App extends React.Component {
       // end fetch
     } // end if
   } // end logIn
-
-  // playGame = () => {
-  //   console.log('playing game');
-  //   this.setState({playClicked: true})
-  // }
-
-  // gameStart = () => {
-  //   console.log('game is starting');
-  //   this.setState({gameStarted: true})
-  // }
-
-  // playAgainApp = (event) => {
-  //   console.log('playing game again');
-  //   fetch(API + 'api/v1/scores', {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       user_id: event.currentTarget.dataset.user,
-  //       score: parseInt(event.currentTarget.dataset.score)
-  //     })
-  //   })
-  //     .then(r => r.json())
-  //     .then(() => {
-  //       this.setState({
-  //         gameStarted: false,
-  //         gameOver: false
-  //       })
-  //     })
-  // }
 
   signOut = () => {
     console.log('signing out');
@@ -181,23 +144,6 @@ class App extends React.Component {
     window.location.href = "/"
   }
 
-  // setTime = (e) => {
-  //   console.log('setting time');
-  //   console.log(e.currentTarget.id);
-  //   this.setState({time: e.currentTarget.id})
-  //   this.setState({timeSet: true})
-  // }
-
-  // setCategory = (e) => {
-  //   console.log('setting category');
-  //   // console.log(e.currentTarget.id);
-  //   let categorySelected = this.state.categories.filter(category=>{
-  //     return category.id === parseInt(e.currentTarget.id, 10)
-  //   })
-  //   this.setState({categorySelected: categorySelected[0]})
-  //   this.setState({categorySet: true})
-  // }
-
   // end HELPER FUNCTIONS
 
   componentDidMount() {
@@ -246,17 +192,17 @@ class App extends React.Component {
           <Route exact path='/play' render={() => <GameContainer
             currentUser={this.state.currentUser}
             categories={this.state.categories} />}/>
-            <Route exact path='/scores' render={() => <ScoreBoardContainer />} />
-            <Route exact path='/account' render={() => <MyAccount
-                loggedIn={this.state.loggedIn}
-                handleForm={this.handleForm}
-                userForm={this.state.userForm}
-                currentUser={this.state.currentUser}
-                signOut={this.signOut}
-                editAccount={this.editAccount}
-                editingAccount={this.state.editingAccount}
-                doneEditingAccount={this.doneEditingAccount}
-                deleteAccount={this.deleteAccount} />} />
+          <Route exact path='/scores' render={() => <ScoreBoardContainer />} />
+          <Route exact path='/account' render={() => <MyAccount
+              loggedIn={this.state.loggedIn}
+              handleForm={this.handleForm}
+              userForm={this.state.userForm}
+              currentUser={this.state.currentUser}
+              signOut={this.signOut}
+              editAccount={this.editAccount}
+              editingAccount={this.state.editingAccount}
+              doneEditingAccount={this.doneEditingAccount}
+              deleteAccount={this.deleteAccount} />} />
           </div>
         </div>
       </Router>
