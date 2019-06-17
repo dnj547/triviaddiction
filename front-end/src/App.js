@@ -86,6 +86,7 @@ class App extends React.Component {
             this.setState({
               loggedIn: true,
               currentUser: {
+                ...this.state.currentUser,
                 id: data.id,
                 username: data.username
               }
@@ -141,7 +142,7 @@ class App extends React.Component {
 
   editAccount = () => {
     console.log('editing account');
-    this.setState({editingAccount: true})
+    this.setState({editingAccount: !this.state.editingAccount})
   }
 
   doneEditingAccount = (event) => {
@@ -222,9 +223,9 @@ class App extends React.Component {
             this.setState({
               loggedIn: true,
               currentUser: {
-                ...this.state.currentUser,
                 id: data.id,
-                username: data.username
+                username: data.username,
+                scores: data.scores
               }
             })
           }
