@@ -6,13 +6,17 @@ class AuthController < ApplicationController
     user = User.find_by(username: params["username"])
 
     # authenticate the user
-    is_authenticated = user.authenticate(params["password"])
+    if user
+      is_authenticated = user.authenticate(params["password"])
+    else
+      # if user doesn't exist, automatically return false so error message can be thrown
+      is_authenticated = false
+    end
 
     if is_authenticated
-      render json: { token: encode_token(user) }
+      render json: { token: encode_token(user), id: user.id, username: user.username }
     else
       render json: { error: "Wrong username or password" }
     end
-    # "log in the user"
   end
 end

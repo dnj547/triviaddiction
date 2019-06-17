@@ -5,7 +5,7 @@ export default class MyAccount extends React.Component {
   componentDidMount() {
     if (!this.props.loggedIn) {
       window.location.href = "/"
-    } 
+    }
   }
 
   render() {

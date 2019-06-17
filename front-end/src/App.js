@@ -82,12 +82,20 @@ class App extends React.Component {
           // checks if token is returned
           if (!!data.token) {
             localStorage.setItem('token', data.token)
+
+            this.setState({
+              loggedIn: true,
+              currentUser: {
+                id: data.id,
+                username: data.username
+              }
+            })
           } else {
             // render errors on page
             this.setState({
               errorMessage: data.error
             })
-          }
+          } // end if
         })
       // end fetch
     } // end if
