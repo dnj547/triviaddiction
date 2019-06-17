@@ -29,7 +29,8 @@ export default class ScoreBoardContainer extends React.Component {
           </tr>
         </thead>
         <tbody>
-          <ScoreBoard scores={this.state.scores} />
+          <ScoreBoard
+            scores={this.state.scores} />
         </tbody>
       </table>
     )

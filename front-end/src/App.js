@@ -264,7 +264,7 @@ class App extends React.Component {
               setCategory={this.setCategory}
               categorySelected={this.state.categorySelected}
               categorySet={this.state.categorySet} />}/>
-            <Route exact path='/scores' render={() => <ScoreBoardContainer />} />
+            <Route exact path='/scores' render={() => <ScoreBoardContainer currentUser={this.state.currentUser} />} />
             <Route exact path='/account' render={() => <MyAccount
                 loggedIn={this.state.loggedIn}
                 handleForm={this.handleForm}

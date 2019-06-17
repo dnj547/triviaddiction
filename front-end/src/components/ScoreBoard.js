@@ -2,11 +2,6 @@ import React from "react"
 
 export default class ScoreBoard extends React.Component {
   showScores = () => {
-    // fetch(ScoreApi)
-    //   .then(r => r.json())
-    //   .then(scores => {
-    //     this.setState({ scores })
-    //   })
     return (
       this.props.scores.slice(0,10).map((score, index) => {
         return (

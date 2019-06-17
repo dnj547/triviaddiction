@@ -4,7 +4,10 @@ class UserSerializer < ActiveModel::Serializer
   # show only the scores value sorted by recency
   has_many :scores do
     object.scores.map do |obj|
-      obj.score
+      score = {
+        score: obj.score,
+        created_at: obj.created_at
+      }
     end.reverse
   end
 end
