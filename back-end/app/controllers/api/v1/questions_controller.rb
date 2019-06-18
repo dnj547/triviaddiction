@@ -1,5 +1,6 @@
 class Api::V1::QuestionsController < ApplicationController
   def index
-    render json: { message: "hello from questions" }
+    questions = Question.all
+    render json: questions
   end
 end

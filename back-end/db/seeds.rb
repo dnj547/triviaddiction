@@ -1,17 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'rest-client'
 
-
-# require 'rest-client'
+# API = 'https://opentdb.com/api.php?amount=50'
 #
-# response = RestClient.get('https://opentdb.com/api.php?amount=10&difficulty=easy')
-#
-# puts response
+# response = RestClient.get(API)
+# json_response = JSON.parse(response)
 
+# puts json_response["results"]
+
+def store_response(json_object)
+  json_object.each do |question|
+    Question.find_or_create_by(
+      category: question['category'],
+      difficulty: question['difficulty'],
+      question: question['question'],
+      correct_answer: question['correct_answer'],
+      incorrect_answers: question['incorrect_answers'].join(", ")
+    )
+  end
+end
+
+# store_response(json_response["results"])
+
+# returns an array with objects
+# require [category, difficulty, question, correct_answer, incorrect_answers (array)]
+# json_response["results"][arrIdx][key]
+# json_response["results"][0]['incorrect_answers'].join(", ").split(", ")
+
+# Seed Categories
+# categories = ["General Knowledge","Entertainment: Books","Entertainment: Film","Entertainment: Music","Entertainment: Television","Entertainment: Video Games","Entertainment: Board Games","Science & Nature","Science: Computers","Sports","Geography","History","Animals","Vehicles","Entertainment: Japanese Anime & Manga","Entertainment: Cartoon & Animations"]
+
+categories= [[9,"General Knowledge"],[10,"Entertainment: Books"],[11,"Entertainment: Film"],[12,"Entertainment: Music"],[14,"Entertainment: Television"],[15,"Entertainment: Video Games"],[16,"Entertainment: Board Games"],[17,"Science & Nature"],[18,"Science: Computers"],[21,"Sports"],[22,"Geography"],[23,"History"],[27,"Animals"],[28,"Vehicles"],[31,"Entertainment: Japanese Anime & Manga"],[32,"Entertainment: Cartoon & Animations"]]
+
+categories.each do |category|
+  Category.find_or_create_by(api_id: category[0], name: category[1])
+end
+
+# Seed Users
 User.create(username: "danielle", password: "pw123");
 User.create(username: "edgar", password: "hello");

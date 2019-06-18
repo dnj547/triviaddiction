@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       # Questions
       resources :questions, only: [:index]
+      # Categories
+      resources :categories, only: [:index, :show]
       # Scores
       resources :scores, only: [:index, :create, :delete]
     end
