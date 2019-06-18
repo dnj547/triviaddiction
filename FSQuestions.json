@@ -1,306 +1,306 @@
+dan_questions = [{
+  "category": "Dan",
+  "question": "What is the name of our cohort?",
+  "correct_answer": "Dan, stop eating the internet!",
+  "incorrect_answers": ["Dan","Stop eating the internet, Dan!","040119"]
+},
 {
-  category: "Dan",
-  question: "What is the name of our cohort?",
-  correct_answer: "Dan, stop eating the internet!",
-  incorrect_answers: ["Dan","Stop eating the internet, Dan!","040119"]
-}
+  "category": "Dan",
+  "question": "What is the biggest threat to the internet?",
+  "correct_answer": "Dan",
+  "incorrect_answers": ["Sharks","Coffee","Earthquakes"]
+},
 {
-  category: "Dan",
-  question: "What is the biggest threat to the internet?",
-  correct_answer: "Dan",
-  incorrect_answers: ["Sharks","Coffee","Earthquakes"]
-}
+  "category": "Dan",
+  "question": "Who bought the first snacks?",
+  "correct_answer": "Troy",
+  "incorrect_answers": ["Danielle","Ferris","Kevin"]
+},
 {
-  category: "Dan",
-  question: "Who bought the first snacks?",
-  correct_answer: "Troy",
-  incorrect_answers: ["Danielle","Ferris","Kevin"]
-}
+  "category": "Dan",
+  "question": "Who are you?",
+  "correct_answer": "Dan",
+  "incorrect_answers": ["Dan","Dan","Dan"]
+},
 {
-  category: "Dan",
-  question: "Who are you?",
-  correct_answer: "Dan",
-  incorrect_answers: ["Dan","Dan","Dan"]
-}
+  "category": "Dan",
+  "question": "Who likes cottage cheese?",
+  "correct_answer": "Ali",
+  "incorrect_answers": ["Grandmas","Mothers","Sebastian"]
+},
 {
-  category: "Dan",
-  question: "Who likes cottage cheese?",
-  correct_answer: "Ali",
-  incorrect_answers: ["Grandmas","Mothers","Sebastian"]
-}
+  "category": "Dan",
+  "question": "Who was our Mod 1 instructor?",
+  "correct_answer": "Alex",
+  "incorrect_answers": ["Tashawn","Jeff","Tim"]
+},
 {
-  category: "Dan",
-  question: "Who was our Mod 1 instructor?",
-  correct_answer: "Alex",
-  incorrect_answers: ["Tashawn","Jeff","Tim"]
-}
+  "category": "Dan",
+  "question": "Who was our Mod 2 instructor?",
+  "correct_answer": "Tashawn",
+  "incorrect_answers": ["Ferris","Evans","Tim"]
+},
 {
-  category: "Dan",
-  question: "Who was our Mod 2 instructor?",
-  correct_answer: "Tashawn",
-  incorrect_answers: ["Ferris","Evans","Tim"]
-}
+  "category": "Dan",
+  "question": "Who was our Mod 3 instructor?",
+  "correct_answer": "Evans",
+  "incorrect_answers": ["Tim","Alex","Will"]
+},
 {
-  category: "Dan",
-  question: "Who was our Mod 3 instructor?",
-  correct_answer: "Evans",
-  incorrect_answers: ["Tim","Alex","Will"]
-}
+  "category": "Dan",
+  "question": "Who was our Mod 4 instructor?",
+  "correct_answer": "Tim",
+  "incorrect_answers": ["Alex","God","Tashawn"]
+},
 {
-  category: "Dan",
-  question: "Who was our Mod 4 instructor?",
-  correct_answer: "Tim",
-  incorrect_answers: ["Alex","God","Tashawn"]
-}
+  "category": "Dan",
+  "question": "Who bought the beers when the keg was broken?",
+  "correct_answer": "Ferris",
+  "incorrect_answers": ["Troy","Kevin","WeWork"]
+},
 {
-  category: "Dan",
-  question: "Who bought the beers when the keg was broken?",
-  correct_answer: "Ferris",
-  incorrect_answers: ["Troy","Kevin","WeWork"]
-}
+  "category": "Dan",
+  "question": "Who makes things harder for himself?",
+  "correct_answer": "Jeff",
+  "incorrect_answers": ["Jeff","Jeff","Jeff"]
+},
 {
-  category: "Dan",
-  question: "Who makes things harder for himself?",
-  correct_answer: "Jeff",
-  incorrect_answers: ["Jeff","Jeff","Jeff"]
-}
+  "category": "Dan",
+  "question": "What painter does Sebastian love?",
+  "correct_answer": "Bob Ross",
+  "incorrect_answers": ["Vincent Van Gogh","Claude Monet","Ali the Great"]
+},
 {
-  category: "Dan",
-  question: "What painter does Sebastian love?",
-  correct_answer: "Bob Ross",
-  incorrect_answers: ["Vincent Van Gogh","Claude Monet","Ali the Great"]
-}
+  "category": "Dan",
+  "question": "Who got accepted into NYU?",
+  "correct_answer": "Sarah",
+  "incorrect_answers": ["Woohoo","Congrats","Woot woot"]
+},
 {
-  category: "Dan",
-  question: "Who got accepted into NYU?",
-  correct_answer: "Sarah",
-  incorrect_answers: ["Woohoo","Congrats","Woot woot"]
-}
+  "category": "Dan",
+  "question": "Who can speak backwards?",
+  "correct_answer": "Mom",
+  "incorrect_answers": ["Ali","Grandma","Yoda"]
+},
 {
-  category: "Dan",
-  question: "Who can speak backwards?",
-  correct_answer: "Mom",
-  incorrect_answers: ["Ali","Grandma","Yoda"]
-}
+  "category": "Dan",
+  "question": "When did we get chairs?",
+  "correct_answer": "When we took them",
+  "incorrect_answers": ["Mod 4","Too late","Never got a chair"]
+},
 {
-  category: "Dan",
-  question: "When did we get chairs?",
-  correct_answer: "When we took them",
-  incorrect_answers: ["Mod 4","Too late","Never got a chair"]
-}
+  "category": "Dan",
+  "question": "What do the coffee cups say?",
+  "correct_answer": "Always do what you love wework",
+  "incorrect_answers": ["Flatiron School is amazing","learn love code","Always coding, never quitting"]
+},
 {
-  category: "Dan",
-  question: "What do the coffee cups say?",
-  correct_answer: "Always do what you love wework",
-  incorrect_answers: ["Flatiron School is amazing","learn love code","Always coding, never quitting"]
-}
+  "category": "Dan",
+  "question": "What’s the Flatiron School slogan?",
+  "correct_answer": "learn love code",
+  "incorrect_answers": ["If you're not first, you're last","It's all a turing test","Stress out for no reason!"]
+},
 {
-  category: "Dan",
-  question: "What’s the Flatiron School slogan?",
-  correct_answer: "learn love code",
-  incorrect_answers: ["If you're not first, you're last","It's all a turing test","Stress out for no reason!"]
-}
+  "category": "Dan",
+  "question": "How many mods are there?",
+  "correct_answer": "5",
+  "incorrect_answers": ["8","1","Dan"]
+},
 {
-  category: "Dan",
-  question: "How many mods are there?",
-  correct_answer: "5",
-  incorrect_answers: ["8","1","Dan"]
-}
+  "category": "Dan",
+  "question": "How do you feel about sushi saga?",
+  "correct_answer": "Sebastian is a madman",
+  "incorrect_answers": ["Hate it!","Love it!","It was fine."]
+},
 {
-  category: "Dan",
-  question: "How do you feel about sushi saga?",
-  correct_answer: "Sebastian is a madman",
-  incorrect_answers: ["Hate it!","Love it!","It was fine."]
-}
+  "category": "Dan",
+  "question": "Which programming language is the best?",
+  "correct_answer": "HTML",
+  "incorrect_answers": ["Ruby","JavaScript","CSS"]
+},
 {
-  category: "Dan",
-  question: "Which programming language is the best?",
-  correct_answer: "HTML",
-  incorrect_answers: ["Ruby","JavaScript","CSS"]
-}
+  "category": "Dan",
+  "question": "What will you do after Flatiron School?",
+  "correct_answer": "Die",
+  "incorrect_answers": ["Get a job","Continue learning forever","Live at Flatiron School until they kick me out"]
+},
 {
-  category: "Dan",
-  question: "What will you do after Flatiron School?",
-  correct_answer: "Die",
-  incorrect_answers: ["Get a job","Continue learning forever","Live at Flatiron School until they kick me out"]
-}
+  "category": "Dan",
+  "question": "Which mod was your favorite?",
+  "correct_answer": "Mod 4",
+  "incorrect_answers": ["Mod 3","Mod 2","Mod 1"]
+},
 {
-  category: "Dan",
-  question: "Which mod was your favorite?",
-  correct_answer: "Mod 4",
-  incorrect_answers: ["Mod 3","Mod 2","Mod 1"]
-}
+  "category": "Dan",
+  "question": "What did Edgar, Danielle, Ferris, and Troy win at the OpenSource ERPs Hackathon?",
+  "correct_answer": "Most diverse team and unique idea",
+  "incorrect_answers": ["A big piece of cardboard","They won something?","Unclear"]
+},
 {
-  category: "Dan",
-  question: "What did Edgar, Danielle, Ferris, and Troy win at the OpenSource ERPs Hackathon?",
-  correct_answer: "Most diverse team and unique idea",
-  incorrect_answers: ["A big piece of cardboard","They won something?","Unclear"]
-}
+  "category": "Dan",
+  "question": "How many women are in our cohort?",
+  "correct_answer": "5",
+  "incorrect_answers": ["10","2","4"]
+},
 {
-  category: "Dan",
-  question: "How many women are in our cohort?",
-  correct_answer: "5",
-  incorrect_answers: ["10","2","4"]
-}
+  "category": "Dan",
+  "question": "What game is played by our cohort most often at happy hours?",
+  "correct_answer": "Stack cup",
+  "incorrect_answers": ["Slap cup","Beer pong","Rugby"]
+},
 {
-  category: "Dan",
-  question: "What game is played by our cohort most often at happy hours?",
-  correct_answer: "Stack cup",
-  incorrect_answers: ["Slap cup","Beer pong","Rugby"]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "Bubble tea?",
+  "correct_answer": "Bubble tea",
+  "incorrect_answers": ["Bubble tea","Bubble","Tea"]
+},
 {
-  category: "Dan",
-  question: "Bubble tea?",
-  correct_answer: "Bubble tea",
-  incorrect_answers: ["Bubble tea","Bubble","Tea"]
-}
+  "category": "Dan",
+  "question": "Why Flatiron School?",
+  "correct_answer": "It's the best",
+  "incorrect_answers": ["It's so cheap","It's easy","Everyone is very serious here"]
+},
 {
-  category: "Dan",
-  question: "Why Flatiron School?",
-  correct_answer: "It's the best",
-  incorrect_answers: ["It's so cheap","It's easy","Everyone is very serious here"]
-}
+  "category": "Dan",
+  "question": "Why do we write and present blog posts?",
+  "correct_answer": "For funsies",
+  "incorrect_answers": ["Because we have to","To create an online presence","Torture"]
+},
 {
-  category: "Dan",
-  question: "Why do we write and present blog posts?",
-  correct_answer: "For funsies",
-  incorrect_answers: ["Because we have to","To create an online presence","Torture"]
-}
+  "category": "Dan",
+  "question": "Why are we here?",
+  "correct_answer": "42",
+  "incorrect_answers": ["To learn, love, and code","For the community happy hours","Dan"]
+},
 {
-  category: "Dan",
-  question: "Why are we here?",
-  correct_answer: "42",
-  incorrect_answers: ["To learn, love, and code","For the community happy hours","Dan"]
-}
+  "category": "Dan",
+  "question": "Who is your mom?",
+  "correct_answer": "Ali",
+  "incorrect_answers": ["Ali","Ali","Sebastian"]
+},
 {
-  category: "Dan",
-  question: "Who is your mom?",
-  correct_answer: "Ali",
-  incorrect_answers: ["Ali","Ali","Sebastian"]
-}
+  "category": "Dan",
+  "question": "Who are the best TCFs?",
+  "correct_answer": "Ali & Sebastian",
+  "incorrect_answers": ["Jeff & Dan","Ferris & Danielle","Rob & Kevin"]
+},
 {
-  category: "Dan",
-  question: "Who are the best TCFs?",
-  correct_answer: "Ali & Sebastian",
-  incorrect_answers: ["Jeff & Dan","Ferris & Danielle","Rob & Kevin"]
-}
+  "category": "Dan",
+  "question": "Who has pink hair and just got a hair cut?",
+  "correct_answer": "Danielle",
+  "incorrect_answers": ["Edgar","Dan","Soyeong"]
+},
 {
-  category: "Dan",
-  question: "Who has pink hair and just got a hair cut?",
-  correct_answer: "Danielle",
-  incorrect_answers: ["Edgar","Dan","Soyeong"]
-}
+  "category": "Dan",
+  "question": "Why is Flatiron School in FiDi?",
+  "correct_answer": "What are you talking about? We're in the Flatiron district right now.",
+  "incorrect_answers": ["Something about flat irons","FiDi is beautiful and we love it here","The Flatiron building is full"]
+},
 {
-  category: "Dan",
-  question: "Why is Flatiron School in FiDi?",
-  correct_answer: "What are you talking about? We're in the Flatiron district right now.",
-  incorrect_answers: ["Something about flat irons","FiDi is beautiful and we love it here","The Flatiron building is full"]
-}
+  "category": "Dan",
+  "question": "Statue of Liberty?",
+  "correct_answer": "NO",
+  "incorrect_answers": ["Nah","Not today","No thank you"]
+},
 {
-  category: "Dan",
-  question: "Statue of Liberty?",
-  correct_answer: "NO",
-  incorrect_answers: ["Nah","Not today","No thank you"]
-}
+  "category": "Dan",
+  "question": "Are you going to Game Jam?",
+  "correct_answer": "Yep",
+  "incorrect_answers": ["Yes","Yeah","Probably"]
+},
 {
-  category: "Dan",
-  question: "Are you going to Game Jam?",
-  correct_answer: "Yep",
-  incorrect_answers: ["Yes","Yeah","Probably"]
-}
+  "category": "Dan",
+  "question": "Who does Tashawn hate?",
+  "correct_answer": "Drake",
+  "incorrect_answers": ["Sebastian","Ali","Jeff"]
+},
 {
-  category: "Dan",
-  question: "Who does Tashawn hate?",
-  correct_answer: "Drake",
-  incorrect_answers: ["Sebastian","Ali","Jeff"]
-}
+  "category": "Dan",
+  "question": "Who is the most powerful instructor?",
+  "correct_answer": "Evans",
+  "incorrect_answers": ["Not Evans","Probably Evans","Idk"]
+},
 {
-  category: "Dan",
-  question: "Who is the most powerful instructor?",
-  correct_answer: "Evans",
-  incorrect_answers: ["Not Evans","Probably Evans","Idk"]
-}
+  "category": "Dan",
+  "question": "What would you do differently if you had to repeat your time at Flatiron School?",
+  "correct_answer": "Steal chairs earlier",
+  "incorrect_answers": ["Work harder","Be more lazy","Study more"]
+},
 {
-  category: "Dan",
-  question: "What would you do differently if you had to repeat your time at Flatiron School?",
-  correct_answer: "Steal chairs earlier",
-  incorrect_answers: ["Work harder","Be more lazy","Study more"]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+},
 {
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
-{
-  category: "Dan",
-  question: "",
-  correct_answer: "",
-  incorrect_answers: ["","",""]
-}
+  "category": "Dan",
+  "question": "",
+  "correct_answer": "",
+  "incorrect_answers": ["","",""]
+}]
