@@ -12,23 +12,24 @@ export default class HomePageContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 style={{color: '#FBA9A7'}}>How to Play</h1>
-        <div className="row">
-          <div className="col-sm-4">
-            <img src="cup.svg" height="400px" />
-          </div>
-          <div className="col-sm-8 mx-auto text-left">
-            <h4 className="p-4 border-0 list-group-item">1. Choose a time limit and a category</h4>
-            <h4 className="p-4 border-0 list-group-item">2. Answer as many questions as you can before the coffee runs out</h4>
-            <h4 className="p-4 border-0 list-group-item">3. Play it again and again and again and again and again and again and again... until you’re <strong><u>triviaddicted</u></strong> :)</h4>
+      <div className="row">
+        <div className="col-sm-4">
+          <img src="cup-brown.svg" alt="Coffee Cup" className="m-4" height="400px" />
+        </div>
+        <div className="col-sm-8 shadow question-rounded mx-auto text-left">
+          <h1 className="p-4 text-center" style={{color: '#FBA9A7'}}>How to Play</h1>
+          <h4 className="p-4">1. Choose a time limit and a category</h4>
+          <h4 className="p-4">2. Answer as many questions as you can before the coffee runs out</h4>
+          <h4 className="p-4">3. Play it again and again and again and again and again and again and again... until you’re <strong><u>triviaddicted</u></strong> :)</h4>
+
+          <div className="p-4">
             {this.props.loggedIn ?
-              <div>
+              <div className="row justify-content-center">
                 <Link to='/play'>
                   <button
                     className="btn-lg border-0 teal-bg text-light"
                     onClick={this.props.playGame}>
-                    Play
+                    Play Game
                   </button>
                 </Link>
               </div> :
