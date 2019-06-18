@@ -5,6 +5,7 @@ class Api::V1::CategoriesController < ApplicationController
   end
 
   def show
+    Category.fetch_questions(params[:id])
     category = Category.find_by(api_id: params[:id])
 
     render json: category
