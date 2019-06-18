@@ -69,11 +69,11 @@ export default class GameContainer extends React.Component {
             <div>
               <h4 className="mt-4">Choose a category:</h4>
               {this.props.categorySelected.name ?
-                <DropdownButton id="dropdown-basic-button"  title={this.props.categorySelected.name} >
+                <DropdownButton id="dropdown-basic-button"  title={this.props.categorySelected.name} variant="warning">
                   {this.createCategoryDropdownItems()}
                 </DropdownButton>
                 :
-                <DropdownButton id="dropdown-basic-button" title="Category" >
+                <DropdownButton id="dropdown-basic-button" title="Category" variant="warning">
                   {this.createCategoryDropdownItems()}
                 </DropdownButton>
               }

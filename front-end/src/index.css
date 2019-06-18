@@ -98,6 +98,21 @@ h1, h2, h3, h4, h5 {
   transition: 0.15s;
   background: #E7706D;
 }
+.btn-warning {
+    color: #fff !important;
+    font-weight: bold !important;
+    background-color: #FBA9A7 !important;
+    border-color: #FBA9A7 !important;
+}
+.btn-warning:hover, .show>.btn-warning.dropdown-toggle {
+    color: #fff !important;
+    /* font-weight: bold !important; */
+    background-color: #E7706D !important;
+    border-color: #E7706D !important;
+}
+.show>.btn-warning.dropdown-toggle:focus, .btn-warning:focus {
+    box-shadow: 0 0 0 0.2rem rgba(231,112,109,.5) !important;
+}
 
 /* Blue */
 .blue-bg {
