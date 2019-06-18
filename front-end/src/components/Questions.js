@@ -67,6 +67,7 @@ export default class Questions extends React.Component {
       <div>
         {this.props.gameOver ?
           <Ending
+            gameRestart={this.props.gameRestart}
             currentUser={this.props.currentUser}
             score={this.state.correctAnswers.length}
             playAgainApp={this.props.playAgainApp}

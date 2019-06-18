@@ -118,10 +118,10 @@ class App extends React.Component {
 
   gameRestart = () => {
     console.log('game is starting');
-    this.setState({gameStarted: false})
+    this.setState({gameStarted: false, gameOver: false})
   }
 
-  playAgainApp = (event) => {
+  playAgainApp = (id, score) => {
     console.log('playing game again');
     fetch(API + 'api/v1/scores', {
       method: "POST",
@@ -130,8 +130,8 @@ class App extends React.Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        user_id: event.currentTarget.dataset.user,
-        score: parseInt(event.currentTarget.dataset.score)
+        user_id: id,
+        score: parseInt(score)
       })
     })
       .then(r => r.json())
@@ -142,8 +142,6 @@ class App extends React.Component {
         }
 
         this.setState({
-          gameStarted: false,
-          gameOver: false,
           currentUser: {
             ...this.state.currentUser,
             scores: [newScoreObj, ...this.state.currentUser.scores]
@@ -272,6 +270,7 @@ class App extends React.Component {
               playGame={this.playGame}
               loggedIn={this.state.loggedIn}/>} />
             <Route exact path='/play' render={() => <GameContainer
+              gameRestart={this.gameRestart}
               currentUser={this.state.currentUser}
               gameStarted={this.state.gameStarted}
               gameOver={this.state.gameOver}

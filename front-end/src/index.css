@@ -102,6 +102,10 @@ h1, h2, h3, h4, h5 {
   list-group-style: none;
 }
 
+.text-blue {
+  color: #D1EFFE;
+}
+
 .question-rounded {
   border-radius: 2em;
 }
