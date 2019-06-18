@@ -3,4 +3,10 @@ class Api::V1::CategoriesController < ApplicationController
     categories = Category.all
     render json: categories
   end
+
+  def show
+    category = Category.find_by(api_id: params[:id])
+
+    render json: category
+  end
 end

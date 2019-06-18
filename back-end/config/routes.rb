@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       # Questions
       resources :questions, only: [:index]
       # Categories
-      resources :categories, only: [:index]
+      resources :categories, only: [:index, :show]
       # Scores
       resources :scores, only: [:index, :create, :delete]
     end

@@ -27,10 +27,12 @@ end
 # json_response["results"][0]['incorrect_answers'].join(", ").split(", ")
 
 # Seed Categories
-categories = ["General Knowledge","Entertainment: Books","Entertainment: Film","Entertainment: Music","Entertainment: Television","Entertainment: Video Games","Entertainment: Board Games","Science & Nature","Science: Computers","Sports","Geography","History","Animals","Vehicles","Entertainment: Japanese Anime & Manga","Entertainment: Cartoon & Animations"]
+# categories = ["General Knowledge","Entertainment: Books","Entertainment: Film","Entertainment: Music","Entertainment: Television","Entertainment: Video Games","Entertainment: Board Games","Science & Nature","Science: Computers","Sports","Geography","History","Animals","Vehicles","Entertainment: Japanese Anime & Manga","Entertainment: Cartoon & Animations"]
+
+categories= [[9,"General Knowledge"],[10,"Entertainment: Books"],[11,"Entertainment: Film"],[12,"Entertainment: Music"],[14,"Entertainment: Television"],[15,"Entertainment: Video Games"],[16,"Entertainment: Board Games"],[17,"Science & Nature"],[18,"Science: Computers"],[21,"Sports"],[22,"Geography"],[23,"History"],[27,"Animals"],[28,"Vehicles"],[31,"Entertainment: Japanese Anime & Manga"],[32,"Entertainment: Cartoon & Animations"]]
 
 categories.each do |category|
-  Category.find_or_create_by(name: category)
+  Category.find_or_create_by(api_id: category[0], name: category[1])
 end
 
 # Seed Users
