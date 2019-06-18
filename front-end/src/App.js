@@ -39,13 +39,7 @@ class App extends React.Component {
     console.log('fetching categories');
     fetch(CATEGORIES_API)
     .then(r=>r.json())
-    // .then(console.log)
     .then(categories=>{
-      // let categoriesWithManyQuestions = [9, 10, 11, 12, 14, 15, 16, 17, 18, 21, 22, 23, 27, 28, 31, 32]
-      // let filteredCategories = [...categories.trivia_categories].filter(category=>{
-      //   return categoriesWithManyQuestions.includes(category.id)
-      // })
-      // this.setState({categories: filteredCategories})
       this.setState({ categories })
     })
   }
@@ -87,12 +81,26 @@ class App extends React.Component {
           if (!!data.token) {
             localStorage.setItem('token', data.token)
 
+            // if scores exist, user is logging in
+            if (data.scores) {
+              this.setState({
+                loggedIn: true,
+                currentUser: {
+                  id: data.id,
+                  username: data.username,
+                  scores: data.scores,
+                  highScore: data.high_score
+                }
+              }) // end setState
+            } // end if
+
+            // else user is signing up
             this.setState({
               loggedIn: true,
               currentUser: {
                 ...this.state.currentUser,
                 id: data.id,
-                username: data.username
+                username: data.username,
               }
             })
           } else {
@@ -164,7 +172,15 @@ class App extends React.Component {
 
   signOut = () => {
     console.log('signing out');
-    this.setState({loggedIn: false})
+    this.setState({
+      loggedIn: false,
+      currentUser: {
+        id: '',
+        username: '',
+        scores: [],
+        highScore: ''
+      }
+    })
     localStorage.clear()
   }
 

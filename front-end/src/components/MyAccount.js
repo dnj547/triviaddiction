@@ -20,7 +20,7 @@ export default class MyAccount extends React.Component {
           <div className="col-sm-8">
             <table className="mx-auto table table-hover table-borderless">
               <thead>
-                <tr className="pink-bg">
+                <tr className="pink-bg-only">
                   <th><h5 className="mb-0">Last Played</h5></th>
                   <th><h5 className="mb-0">Score</h5></th>
                 </tr>
