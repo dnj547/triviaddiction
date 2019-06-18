@@ -150,6 +150,15 @@ class App extends React.Component {
             scores: [newScoreObj, ...this.state.currentUser.scores]
           }
         })
+
+        if (this.state.currentUser.highScore === '') {
+          this.setState({
+            currentUser: {
+              ...this.state.currentUser,
+              highScore: data.score
+            }
+          })
+        }
       })
   }
 
@@ -251,8 +260,8 @@ class App extends React.Component {
             })
           }
         })
-      this.fetchCategories()
     } // end if
+    this.fetchCategories()
   } // end componentDidMount
 
   render() {
