@@ -12,32 +12,12 @@ export default class HomePageContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 style={{color: '#FBA9A7'}}>It's Trivia Time!!</h1>
-        <div className="row mx-auto">
-          <div className="col-sm-4">
-            <img src="cup.svg" className="bg-white p-4" height="400px" />
-          </div>
-          <div className="col-sm-8 bg-light text-left">
-            <ol>
-              <li>
-                <h4>
-                  Select how long your round should last.
-                </h4>
-              </li>
-              <li>
-                <h4>
-                  Choose a category.
-                </h4>
-              </li>
-              <li>
-                <h4>
-                  Answer as many questions as you can before the timer runs out!
-                </h4>
-              </li>
-            </ol>
-
-          </div>
+      <div className="jumbotron question-rounded">
+        <h1 style={{color: '#FBA9A7'}}>How to Play</h1>
+        <div className="col-sm-8 mx-auto">
+          <h2 className="p-4 border-0 list-group-item" style={{'text-align': 'left', 'font-size': '20px'}}>1. Choose a time limit and a category</h2>
+          <h2 className="p-4 border-0 list-group-item" style={{'text-align': 'left', 'font-size': '20px'}}>2. Answer as many questions as you can before the coffee runs out</h2>
+          <h2 className="p-4 border-0 list-group-item" style={{'text-align': 'left', 'font-size': '20px'}}>3. Play it again and again and again and again and again and again and again... until you’re <strong>triviaddicted</strong> :)</h2>
         </div>
         {this.props.loggedIn ?
           <div>
