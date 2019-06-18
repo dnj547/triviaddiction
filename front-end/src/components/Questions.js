@@ -4,7 +4,8 @@ import Scores from '../components/Scores'
 import Ending from '../components/Ending'
 
 // const API = 'https://opentdb.com/api.php?amount=50'
-const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=50&category=' //add CATEGORY_ID
+// const API_WITH_CATEGORY = 'https://opentdb.com/api.php?amount=50&category=' //add CATEGORY_ID
+const API_WITH_CATEGORY = 'http://localhost:3000/api/v1/categories/' //add CATEGORY_ID
 
 export default class Questions extends React.Component {
 
@@ -22,10 +23,11 @@ export default class Questions extends React.Component {
   // HELPER FUNCTIONS
   fetchQuestions = () => {
     console.log('fetching questions');
-    fetch(API_WITH_CATEGORY + `${this.props.categorySelected.id}`)
+    fetch(API_WITH_CATEGORY + `${this.props.categorySelected.api_id}`)
     .then(r=>r.json())
     .then(questions=>{
-      this.setState({questions: questions.results, answeredQuestion: [], correctAnswers: []})
+      // debugger
+      this.setState({questions: questions.questions, answeredQuestion: [], correctAnswers: []})
     })
   } // end fetchQuestions
 

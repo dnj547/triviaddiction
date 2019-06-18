@@ -27,8 +27,8 @@ export default class GameContainer extends React.Component {
     return this.props.categories.map(category=>{
       return <Dropdown.Item
               onClick={(e)=>this.props.setCategory(e)}
-              key={category.id}
-              id={category.id}>{category.name}
+              key={category.api_id}
+              id={category.api_id}>{category.name}
             </Dropdown.Item>
     })
   }

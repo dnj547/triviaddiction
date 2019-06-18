@@ -7,7 +7,8 @@ import MyAccount from './components/MyAccount'
 import ScoreBoardContainer from './containers/ScoreBoardContainer'
 
 const API = 'http://localhost:3000/'
-const CATEGORIES_API = 'https://opentdb.com/api_category.php'
+const CATEGORIES_API = 'http://localhost:3000/api/v1/categories'
+// const CATEGORIES_API = 'https://opentdb.com/api_category.php'
 
 class App extends React.Component {
   state = {
@@ -38,12 +39,14 @@ class App extends React.Component {
     console.log('fetching categories');
     fetch(CATEGORIES_API)
     .then(r=>r.json())
+    // .then(console.log)
     .then(categories=>{
-      let categoriesWithManyQuestions = [9, 10, 11, 12, 14, 15, 16, 17, 18, 21, 22, 23, 27, 28, 31, 32]
-      let filteredCategories = [...categories.trivia_categories].filter(category=>{
-        return categoriesWithManyQuestions.includes(category.id)
-      })
-      this.setState({categories: filteredCategories})
+      // let categoriesWithManyQuestions = [9, 10, 11, 12, 14, 15, 16, 17, 18, 21, 22, 23, 27, 28, 31, 32]
+      // let filteredCategories = [...categories.trivia_categories].filter(category=>{
+      //   return categoriesWithManyQuestions.includes(category.id)
+      // })
+      // this.setState({categories: filteredCategories})
+      this.setState({ categories })
     })
   }
 
@@ -212,10 +215,11 @@ class App extends React.Component {
   }
 
   setCategory = (e) => {
+    // debugger
     console.log('setting category');
     // console.log(e.currentTarget.id);
     let categorySelected = this.state.categories.filter(category=>{
-      return category.id === parseInt(e.currentTarget.id, 10)
+      return category.api_id === parseInt(e.currentTarget.id, 10)
     })
     this.setState({categorySelected: categorySelected[0]})
     this.setState({categorySet: true})
