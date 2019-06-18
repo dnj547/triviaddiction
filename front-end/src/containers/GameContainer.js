@@ -46,6 +46,7 @@ export default class GameContainer extends React.Component {
               onComplete={() => this.props.gameTimeOver()}
               date={Date.now() + this.props.time*1000} />
             <Questions
+              gameRestart={this.props.gameRestart}
               currentUser={this.props.currentUser}
               gameStarted={this.props.gameStarted}
               gameOver={this.props.gameOver}
@@ -58,13 +59,15 @@ export default class GameContainer extends React.Component {
           <div>
             <p>Hi {this.props.currentUser.username}</p>
               <div>
-                <div>
-                  Choose a time limit for your game:
-                  <br/>
-                  <button className="btn btn-primary" id="15" onClick={(e)=>this.props.setTime(e)}>15 Seconds</button>
-                  <button className="btn btn-primary" id="30" onClick={(e)=>this.props.setTime(e)}>30 Seconds</button>
-                  <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
-                </div>
+                Choose a time limit for your game:
+                <br/>
+
+                <button className="btn btn-primary" id="15" onClick={(e)=>this.props.setTime(e)}>15 Seconds</button>
+
+                <button className="btn btn-primary" id="30" onClick={(e)=>this.props.setTime(e)}>30 Seconds</button>
+
+                <button className="btn btn-primary" id="60" onClick={(e)=>this.props.setTime(e)}>60 Seconds</button>
+
                 <br/>
                 <div>
                   Choose a category:
@@ -81,9 +84,9 @@ export default class GameContainer extends React.Component {
                 </div>
                 <br/>
                 {this.props.timeSet && this.props.categorySet ?
-                  <button className="btn btn-primary" onClick={() => this.props.gameStart()}>Start Game</button>
+                  <button className="btn-lg border-0 teal-bg text-light" onClick={() => this.props.gameStart()}>Start Game</button>
                   :
-                  <button className="btn btn-primary" disabled>Start Game</button>
+                  <button className="btn-lg blue-border text-blue" disabled>Start Game</button>
                 }
               </div>
 
