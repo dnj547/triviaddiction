@@ -5,6 +5,7 @@ export default class Form extends React.Component {
     return (
       <React.Fragment>
         {this.props.errorMessage ? <div className="alert alert-danger mx-auto" role="alert">{this.props.errorMessage}</div> : null}
+        <h4 className="text-center mb-4" style={{color: '#FBA9A7'}}>Sign Up/Log In to Play</h4>
         <form className="form-inline bg-light p-4 rounded-lg">
           <div className="form-group">
             <input

@@ -97,6 +97,7 @@ class App extends React.Component {
             // else user is signing up
             this.setState({
               loggedIn: true,
+              errorMessage: '',
               currentUser: {
                 ...this.state.currentUser,
                 id: data.id,
