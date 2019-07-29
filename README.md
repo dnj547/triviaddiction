@@ -25,6 +25,7 @@ rails db:create && rails db:migrate && rails db:seed && rails s
 open second terminal window
 ```
 cd frontend
+npm install
 npm start
 yes
 ```
