@@ -18,13 +18,13 @@ open terminal
 ```
 git clone https://github.com/dnj547/triviaddiction.git
 cd triviaddiction
-cd backend
+cd back-end
 bundle
 rails db:create && rails db:migrate && rails db:seed && rails s
 ```
 open second terminal window
 ```
-cd frontend
+cd front-end
 npm install
 npm start
 yes
